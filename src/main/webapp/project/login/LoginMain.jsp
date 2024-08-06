@@ -17,9 +17,7 @@
 <body>
 <div class="container">
     <!-- 로고 이미지 -->
-    <div class="logo">
-        <img src="../../image/logo.png" alt="DailyEat Logo">
-    </div>
+    
     <!-- 환영 메시지 -->
     <h1>DailyEat에 오신걸 환영합니다.</h1>
     <p>DailyEat은 매일 자신의 식단일지를 기록할 수 있는 공간입니다.</p>
