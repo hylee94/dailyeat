@@ -1,0 +1,181 @@
+/*폰트*/
+@font-face {
+    font-family: 'MaplestoryOTFBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'NanumSquareRound';
+}
+/*상단 네비바 전체*/
+.navbar {
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid beige;
+}
+/*네비바 안 요소*/
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+/*네비바 맨 왼쪽로고*/
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    font-family: 'MaplestoryOTFBold';
+}
+/*햄버거 메뉴*/
+.nav-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+/*네비 아이템 가로나열,여백제거*/
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+/*네비 아이템 중앙정렬*/
+.nav-item {
+    flex: 1;
+    text-align: center;
+}
+/*링크 스타일설정*/
+.nav-item a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/*네비바 로그인 버튼*/
+.login-button {
+    background-color:#6495ED ;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+/*상단바 버튼에 마우스 올렸을 때*/
+.nav-item a:hover, .login-button:hover {
+    background-color: #D1D8E0;
+    color: black;
+}
+
+/* 1 - 홈파트 */
+.home-section {
+    margin: 70px ;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #F4F7FD;
+    width: 100%;
+    height: auto;
+}
+
+/*시작하기 버튼 */
+#start-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 20px 0;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    background-color: #4C84FF;
+    border: 2px solid black;
+
+}
+/*시작하기 버튼 마우스 올렸을 때*/
+#start-button:hover {
+    background-color: #3571FF;
+}
+/* 2 - 설명파트 */
+.usage-section {
+    text-align: center;
+    padding: 40px;
+    background-color: #FFFFFF;
+}
+
+/* 단계별 설명 스타일 */
+.steps {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.step {
+    width: 80%;
+    margin: 10px 0;
+    text-align: center;
+}
+.step-number {
+    font-size: 36px;
+    color: #C4C4C4;
+}
+
+/* 맨아래 푸터 */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #F8F9FA;
+    width: 100%;
+    text-align: center;
+    color: #333;
+    border-top: 1px solid #D1D1D1;
+    font-family: 'MaplestoryOTFBold';
+}
+
+/* 화면 작아졌을때(미디어쿼리) */
+@media screen and (max-width: 768px) {
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+
+    .steps {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step {
+        width: 80%;
+        margin: 10px 0;
+    }
+}
