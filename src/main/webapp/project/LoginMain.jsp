@@ -28,9 +28,9 @@
     <!-- 로그인 폼 -->
     <form>
         <label for="username">아이디</label>
-        <input type="text" id="username" placeholder="Give me some text">
+        <input type="text" id="username" placeholder="아이디를 입력해주세요">
         <label for="password">비밀번호</label>
-        <input type="password" id="password" placeholder="Give me some text">
+        <input type="password" id="password" placeholder="비밀번호를 입력해주세요">
         <button type="submit">로그인</button>
     </form>
     <!-- 아이디/비밀번호 찾기 링크 -->
