@@ -42,7 +42,7 @@ body {
 }
 
 /* 로고 스타일 설정 */
-.logo img {
+.img.logo{
     width: 120px;
     margin-bottom: 20px;
 }

@@ -13,10 +13,16 @@
 <body>
 <div class="container">
     <!-- 로고 이미지 -->
-    <img src="logo.png" alt="DailyEat 로고" class="logo">
+    <div class="logo">
+        <a href="../home/HomeMain.jsp">
+        <img src="../../image/logo.png" alt="DailyEat Logo">
+        </a>
+    </div>
     <!-- 환영 메시지 -->
     <h1>DailyEat에 오신걸 환영합니다.</h1>
     <p>DailyEat은 매일 자신의 식단일지를 기록할 수 있는 공간입니다.</p>
+    <!-- 구분선 -->
+    <hr class="divider">
     <!-- 회원가입 폼 -->
     <form action="submit_form.jsp" method="post">
         <!-- 아이디 입력 그룹 -->
@@ -40,7 +46,7 @@
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요">
         </div>
         <!-- 제출 버튼 -->
-        <button type="submit">로그인</button>
+        <button type="submit">회원가입</button>
     </form>
 </div>
 <!-- 푸터 -->
