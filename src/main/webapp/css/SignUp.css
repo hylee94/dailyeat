@@ -107,7 +107,19 @@ button {
 button:hover {
     background-color: #0b8be0;
 }
+.login {
+    margin-top: 20px;
+}
 
+/* 링크 스타일 설정 */
+.login a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
 
 /* 푸터 스타일 설정 */
 footer {

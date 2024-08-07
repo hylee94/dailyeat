@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="../../css/Login.css" rel="stylesheet"/>
+    <link href="../../css/Login.css?after" rel="stylesheet"/>
 
 
 </head>
@@ -19,7 +19,7 @@
     <!-- 로고 이미지 -->
     <div class="logo">
         <a href="../home/HomeMain.jsp">
-        <img src="../../image/logo.png" alt="DailyEat Logo">
+            <img src="../../image/logo.png" alt="DailyEat Logo">
         </a>
     </div>
     <!-- 환영 메시지 -->
