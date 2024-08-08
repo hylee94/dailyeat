@@ -28,9 +28,13 @@ body {
     flex-direction: column; /* 세로 방향 레이아웃 */
     align-items: center;
     min-height: 100vh;
+    background-color: #f9f9f9;
 }
 
 
+
+
+/* 푸터 스타일 설정 */
 footer {
     margin-top: auto;
     font-size: 1.5em;
@@ -179,4 +183,3 @@ footer {
 .other {
     opacity: 0.3;
 }
-

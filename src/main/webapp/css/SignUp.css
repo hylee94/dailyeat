@@ -107,24 +107,17 @@ button {
 button:hover {
     background-color: #0b8be0;
 }
-
-/* 링크 섹션 스타일 설정 */
-.links, .signup {
 .login {
     margin-top: 20px;
-}
 }
 
 /* 링크 스타일 설정 */
 .login a {
-    .links a, .signup a {
-        color: #1a73e8;
-        text-decoration: none;
-    }
+    color: #1a73e8;
+    text-decoration: none;
 }
 
 .login a:hover {
-.links a:hover, .signup a:hover {
     text-decoration: underline;
 }
 
@@ -165,5 +158,4 @@ footer {
         font-size: 1em;
         padding: 15px 0;
     }
-}
 }
