@@ -113,12 +113,14 @@ button:hover {
 .login {
     margin-top: 20px;
 }
+}
 
 /* 링크 스타일 설정 */
 .login a {
-.links a, .signup a {
-    color: #1a73e8;
-    text-decoration: none;
+    .links a, .signup a {
+        color: #1a73e8;
+        text-decoration: none;
+    }
 }
 
 .login a:hover {
@@ -163,4 +165,5 @@ footer {
         font-size: 1em;
         padding: 15px 0;
     }
+}
 }
