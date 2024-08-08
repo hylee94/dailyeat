@@ -147,6 +147,7 @@ public class MVCBoardDAO extends DBConnPool {
         return dto;
     }
 
+    //조회수
     public void updateVisitCount(String num) {
         //쿼리문
         String query = "UPDATE project.board "
@@ -162,5 +163,77 @@ public class MVCBoardDAO extends DBConnPool {
             e.printStackTrace();
             System.out.println("mvcboard updateVisitCount 오류 발생");
         }
+    }
+
+    //입력한 비밀번호가 지정한 num 게시물의 비밀번호와 일치하는지 여부 확인
+    public boolean confirmPassword(String pass, String num) {
+        boolean isCorr = false;
+
+        try {
+            String query = "SELECT COUNT(*) FROM project.board" +
+                    " WHERE pass = ? AND num = ?";
+            psmt = conn.prepareStatement(query);
+            psmt.setString(1, pass);
+            psmt.setString(2, num);
+            rs = psmt.executeQuery();
+
+            rs.next();
+            if (!(rs.getInt(1) == 0)) {
+                isCorr = true;
+            }
+
+        } catch (Exception e) {
+            isCorr = false;
+            System.out.println("confirmPassword 오류 발생");
+        }
+
+        return isCorr;
+    }
+
+    //게시글 수정
+    public int updatePost(MVCBoardDTO dto) {
+        int result = 0;
+
+        try {
+            String query = "UPDATE project.board" +
+                    " SET title = ?, id = ?, content = ?," +
+                    " ofile = ?, sfile = ?" +
+                    " WHERE num = ? AND PASS = ?";
+
+            psmt = conn.prepareStatement(query);
+            psmt.setString(1, dto.getTitle());
+            psmt.setString(2, dto.getId());
+            psmt.setString(3, dto.getContent());
+            psmt.setString(4, dto.getOfile());
+            psmt.setString(5, dto.getSfile());
+            psmt.setInt(6, dto.getNum());
+            psmt.setString(7, dto.getPass());
+
+            result = psmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("updatePost 오류 발생");
+        }
+        return result;
+    }
+
+    //게시글 삭제
+    public int deletePost(String num) {
+        int result = 0;
+
+        try {
+            String query = "DELETE FROM project.board WHERE num = ?";
+
+            psmt = conn.prepareStatement(query);
+            psmt.setString(1, num);
+            result = psmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("deletePost 오류 발생");
+        }
+
+        return result;
     }
 }

@@ -19,7 +19,7 @@
     <!-- 게시글 정보 -->
     <tr>
         <td>번호</td> <td>${ dto.num }</td>
-        <td>작성자</td> <td>${ dto.name }</td>
+        <td>작성자</td> <td>${ dto.id }</td>
     </tr>
     <tr>
         <td>작성일</td> <td>${ dto.postdate }</td>
@@ -39,21 +39,24 @@
             </c:if>
         </td>
     </tr>
-
-    <!-- 첨부파일 -->
     <tr>
-        <td>첨부파일</td>
-        <td>
-            <c:if test="${ not empty dto.ofile }">
-                ${ dto.ofile }
-                <a href="../../mvcboard/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&num=${ dto.num }">
-                    [다운로드]
-                </a>
-            </c:if>
-        </td>
-        <td>다운로드수</td>
-        <td>${ dto.downcount }</td>
+        <td>댓글</td>
+        <td colspan="3"></td>
     </tr>
+    <!-- 첨부파일 -->
+<%--    <tr>--%>
+<%--        <td>첨부파일</td>--%>
+<%--        <td>--%>
+<%--            <c:if test="${ not empty dto.ofile }">--%>
+<%--                ${ dto.ofile }--%>
+<%--                <a href="../../mvcboard/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&num=${ dto.num }">--%>
+<%--                    [다운로드]--%>
+<%--                </a>--%>
+<%--            </c:if>--%>
+<%--        </td>--%>
+<%--        <td>다운로드수</td>--%>
+<%--        <td>${ dto.downcount }</td>--%>
+<%--    </tr>--%>
 
     <!-- 하단 메뉴(버튼) -->
     <tr>

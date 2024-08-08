@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<main id="main">
+<main id="container">
     <!--나의 기록 설명-->
     <div class="info">
         <h2>나의 기록</h2>
@@ -49,10 +49,11 @@
     </div>
     <script src="/js/Calendar.js"></script>
 
-<!--푸터 로고-->
-<footer>
-    <h3 class="foot-logo">dailyEat</h3>
-</footer>
 </main>
+
+    <!--푸터 로고-->
+    <footer>
+        <h3 class="footer">dailyEat</h3>
+    </footer>
 </body>
 </html>
