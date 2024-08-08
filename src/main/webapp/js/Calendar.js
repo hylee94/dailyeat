@@ -75,7 +75,8 @@ const viewMonth = date.getMonth();
             selectedDateElement = dateSpan;
         });
     });
-}
+
+
 
 renderCalendar();
 
