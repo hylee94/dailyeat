@@ -1,9 +1,5 @@
-let date = new Date();
-let selectedDateElement = null;
-
-const renderCalendar = () => {
-    const viewYear = date.getFullYear();
-    const viewMonth = date.getMonth();
+const viewYear = date.getFullYear();
+const viewMonth = date.getMonth();
 
     // 캘린더 상단에 연도와 월 표시
     document.querySelector('.year-month').textContent = `${viewYear}년 ${viewMonth + 1}월`;
@@ -79,7 +75,8 @@ const renderCalendar = () => {
             selectedDateElement = dateSpan;
         });
     });
-}
+
+
 
 renderCalendar();
 
