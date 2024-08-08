@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const navToggle = document.getElementById('nav-toggle');
-    // nav-toggle 이라는 ID를 가진 요소를 선택하여 navToggle 변수에 할당
     const navList = document.getElementById('nav-list');
-    // nav-list 라는 ID를 가진 요소를 선택하여 navList 변수에 할당
     const startButton = document.getElementById('start-button');
+    const loginButton = document.querySelector('.login-button');
 
     navToggle.addEventListener('click', function () {
         // 'navToggle' 요소에 클릭 이벤트 리스너를 추가
@@ -11,8 +10,26 @@ document.addEventListener('DOMContentLoaded', function () {
         // navList 요소의 클래스 목록에서 active 클래스를 토글
         // active 클래스가 요소에 없으면 추가하고 있으면 제거
     });
+
+    // 시작하기 버튼 눌렀을 때 이벤트
     startButton.addEventListener('click', function () {
-        window.location.href = '#calendar';
+        const isLoggedIn = false; // 실제 로그인 상태를 확인하는 로직을 여기에 추가합니다.
+        if (isLoggedIn) {
+            window.location.href = '#'; //나의 기록 페이지로 이동
+        } else {
+            alert('로그인이 필요합니다.');
+            window.location.href = '#'; // 로그인 페이지로 이동
+        }
     });
-//     시작하기 버튼 클릭 시 '나의 기록' 섹션으로 이동합니다.
+
+    // 네비바 로그인 버튼 눌렀을 때 이벤트
+    loginButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = '#'; // 로그인 페이지로 이동
+    });
+
+
 });
+
+
+
