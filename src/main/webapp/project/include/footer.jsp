@@ -27,7 +27,7 @@
 </head>
 <body>
 <footer>
-    <p>DailyEat</p>
+    <p>dailyEat</p>
 </footer>
 </body>
 </html>

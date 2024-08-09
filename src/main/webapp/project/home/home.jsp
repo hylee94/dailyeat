@@ -49,6 +49,7 @@
         text-align: center;
         padding: 40px;
         background-color: #FFFFFF;
+        width: 60%;
     }
 
     /* 단계별 설명 스타일 */
@@ -88,7 +89,7 @@
     .step:not(:last-child)::after {
         content: '';
         position: absolute;
-        top: 20%;
+        top: 15%;
         right: -40px; /* 선의 위치 조정 */
         width: 80px; /* 선의 길이 조정 */
         height: 2px; /* 선의 두께 조정 */
@@ -124,7 +125,7 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="../../navbar_footer/navbar.jsp"></jsp:include>
+<jsp:include page="../include/navbar.jsp"></jsp:include>
 <!-- 1 - 홈파트 -->
 <div class="home-section">
     <h1>기억하기 힘든 하루의 모든 정보를 <br> 한 곳에서 확인하세요</h1>
@@ -149,14 +150,14 @@
         <div class="step">
             <span class="step-number">03</span>
             <h3>커뮤니티</h3>
-            <p>공유와 소통을 통해 서로 도움을 주고받을 수 있는 공간</p>
+            <p>공유와 소통을 통해 서로 도움을 <br>주고받을 수 있는 공간</p>
         </div>
     </div>
 </section>
 
 <!--맨 아래-->
 <footer>
-    <jsp:include page="../../navbar_footer/footer.jsp"></jsp:include>
+    <jsp:include page="../include/footer.jsp"></jsp:include>
 </footer>
 
 <script src="/js/Home.js"></script>
