@@ -25,6 +25,11 @@
         background-color: #F4F7FD;
         width: 100%;
         height: 600px;
+        /*배경 이미지*/
+        /*background-image: url("");*/
+        /*background-repeat: no-repeat;*/
+        /*background-position: center center;*/
+        /*background-size: 100% 100%;*/
     }
 
     .home-section > h1 {
@@ -67,6 +72,7 @@
         text-align: center;
         position: relative; /* 선을 상대적으로 배치하기 위해 추가 */
         margin-bottom: 80px; /* 각 step 사이의 간격 조정 */
+        padding: 0px 80px;    /*  step 사이 거리 조정*/
     }
 
     .step > h3 {
