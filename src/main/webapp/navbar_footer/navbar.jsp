@@ -18,6 +18,12 @@
             font-weight: normal;
             font-style: normal;
         }
+        @font-face {
+            font-family: 'MaplestoryOTFBold';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
 
         nav {
             width: 100%;
@@ -26,11 +32,14 @@
             transition: background-color 0.3s, font-size 0.3s;
         }
 
-        .navbar-expand-lg .navbar-collapse {
-            justify-content: flex-end;
-            margin-right: 110px;
-        }
 
+        .navbar-collapse{
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 30px;
+
+
+        }
         .nav-link.disabled, .nav-link:disabled {
             color: black;
             cursor: pointer;
@@ -39,6 +48,8 @@
 
         .nav-item {
             padding-left: 60px;
+            margin-left: 50px;
+            margin-right: 20px;
         }
 
         .nav-link:hover {
@@ -58,11 +69,13 @@
 
         .navbar-brand {
             margin-left: 50px;
+            font-family: 'MaplestoryOTFBold','sans-serif';
         }
 
         .navbar-nav {
             display: flex;
             align-items: center;
+
         }
 
         /* Style to be applied on scroll */
