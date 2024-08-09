@@ -111,6 +111,9 @@
                     <a class="nav-link" href="#">나의 기록</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#">커뮤니티</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">마이페이지</a>
                 </li>
 
