@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="/css/Calendar.css">
 </head>
 <body>
-
+<jsp:include page="/navbar_footer/navbar.jsp"/>
+<br/>
 <main id="container">
     <!--나의 기록 설명-->
     <div class="info">
@@ -51,9 +52,7 @@
 
 </main>
 
-    <!--푸터 로고-->
-    <footer>
-        <h3 class="footer">dailyEat</h3>
-    </footer>
+<br/>
+<jsp:include page="/navbar_footer/footer.jsp"/>
 </body>
 </html>

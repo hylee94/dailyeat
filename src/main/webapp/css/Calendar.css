@@ -12,6 +12,8 @@
 }
 
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -19,8 +21,6 @@
     box-sizing: border-box;
     font-family:'NanumSquareRound' ;
 }
-
-
 
 body {
     position: relative; /* 자식 요소의 절대 위치를 기준으로 설정 */
@@ -31,22 +31,10 @@ body {
     background-color: #f9f9f9;
 }
 
-
-
-
-/* 푸터 스타일 설정 */
-footer {
-    margin-top: auto;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    width: 100%;
-    padding: 20px 0;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ddd;
-    font-family: 'MaplestoryOTFBold';
+#container{
+    margin-top: 100px;
 }
+
 
 
 .info{
@@ -183,3 +171,4 @@ footer {
 .other {
     opacity: 0.3;
 }
+
