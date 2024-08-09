@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>글 쓰기</title>
+    <link rel="stylesheet" href="/css/CommuWrite.css">
     <script>
       function validateForm(form){
         if(form.name.value == ""){
@@ -30,40 +31,35 @@
       }
     </script>
   </head>
-
+<jsp:include page="/navbar_footer/navbar.jsp"/>
+<br/>
 <body>
+<div class="container">
 <h2>글쓰기</h2>
 <form name="writeFrm" method="post" action="../../mvcboard/write.do" onsubmit="return validateForm(this);"
       enctype="multipart/form-data">
-  <table border="1" width="90%">
+  <div class="button-container">
+      <button type="submit" class="submit">작성 완료</button>
+      <button type="reset" class="reset">다시 입력</button>
+      <button type="button" class="list" onclick="location.href='../../mvcboard/list.do';">목록 보기</button>
+  </div>
+  <table>
     <tr>
-      <td>작성자</td>
-      <td><input type="text" name="id" style="width: 150px;"/></td>
+      <td><input type="text" name="title" placeholder="제목" class="title-area" /></td>
     </tr>
     <tr>
-      <td>제목</td>
-      <td><input type="text" name="title" style="width: 90%"/></td>
+      <td><textarea name="content" id="textarea" ></textarea></td>
     </tr>
     <tr>
-      <td>내용</td>
-      <td><textarea name="content" style="width: 90%; height: 100px"></textarea></td>
-    </tr>
-    <tr>
-      <td>첨부파일</td>
       <td><input type="file" name="ofile"></td>
     </tr>
     <tr>
       <td>비밀번호</td>
       <td><input type="password" name="pass" width="100px;"></td>
     </tr>
-    <tr>
-      <td colspan="2" align="center">
-        <button type="submit">작성 완료</button>
-        <button type="reset">다시 입력</button>
-        <button type="button" onclick="location.href='../../mvcboard/list.do';">목록 보기</button>
-      </td>
-    </tr>
   </table>
 </form>
+</div>
 </body>
+<jsp:include page="/navbar_footer/footer.jsp"/>
 </html>

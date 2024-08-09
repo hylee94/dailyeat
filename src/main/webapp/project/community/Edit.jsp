@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<h2>파일 첨부형 게시판 - 글쓰기</h2>
+<h2>글 수정하기</h2>
 <form name="writeFrm" method="post" action="../../mvcboard/edit.do" onsubmit="return validateForm(this);"
       enctype="multipart/form-data">
     <input type="hidden" name="num" value="${dto.num}">

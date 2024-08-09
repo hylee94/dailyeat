@@ -86,6 +86,8 @@ public class MVCBoardDAO extends DBConnPool {
     }
 
 
+
+
     //게시글 작성
     public int insertWrite(MVCBoardDTO dto) {
         int result = 0;

@@ -172,3 +172,163 @@ body {
     opacity: 0.3;
 }
 
+
+/* 미디어쿼리 */
+
+/* 모바일 화면 (최대 600px) */
+@media (max-width: 600px) {
+    .calendar {
+        width: 100%;
+        margin: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .year-month {
+        font-size: 24px;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: center; /* 버튼들이 중앙 정렬되도록 설정 */
+        align-items: center; /* 버튼들이 수직으로 중앙 정렬되도록 설정 */
+        border: 1px solid #333333;
+        border-radius: 5px;
+        background-color: #ffffff;
+    }
+
+    .nav-btn {
+        display: inline-flex; /* 버튼의 크기를 텍스트에 맞게 조정 */
+        align-items: center; /* 버튼 내부의 텍스트를 수직 중앙에 배치 */
+        justify-content: center; /* 버튼 내부의 텍스트를 수평 중앙에 배치 */
+        padding: 0 10px; /* 좌우 여백을 추가 */
+        height: 40px; /* 버튼의 높이 */
+        border: none;
+        font-size: 16px;
+        background-color: transparent;
+        cursor: pointer;
+        text-align: center; /* 버튼 텍스트 중앙 정렬 */
+        white-space: nowrap; /* 버튼의 텍스트가 줄 바꿈 없이 유지되도록 설정 */
+    }
+
+    .go-prev,
+    .go-next {
+        /* 이전, 다음 버튼의 너비를 글자에 맞게 조정 */
+        width: auto;
+    }
+
+    .go-today {
+        /* Today 버튼의 너비를 텍스트에 맞게 조정 */
+        width: auto;
+        border-left: 1px solid #333333; /* Today 버튼과 이전 버튼 사이의 구분선 */
+        border-right: 1px solid #333333; /* Today 버튼과 다음 버튼 사이의 구분선 */
+    }
+
+    .days {
+        flex-wrap: wrap;
+        margin: 15px 0 5px;
+    }
+
+    .day {
+        width: calc(100% / 7);
+        padding: 5px;
+    }
+
+    .dates {
+        height: auto;
+    }
+
+    .date {
+        padding: 10px;
+        width: calc(100% / 7);
+    }
+}
+
+/* 태블릿 화면 (최대 900px) */
+@media (max-width: 900px) {
+    .calendar {
+        width: 90%;
+        margin: 30px;
+    }
+
+    .header {
+        flex-direction: row;
+    }
+
+    .year-month {
+        font-size: 28px;
+    }
+
+    .nav {
+        flex-direction: row;
+    }
+
+    .nav-btn {
+        width: 30px;
+        height: 35px;
+        font-size: 14px;
+        line-height: 35px;
+    }
+
+    .days {
+        margin: 20px 0 10px;
+    }
+
+    .day {
+        width: calc(100% / 7);
+    }
+
+    .dates {
+        height: auto;
+    }
+
+    .date {
+        padding: 12px;
+    }
+}
+
+/* 데스크탑 화면 (최소 1200px) */
+@media (min-width: 1200px) {
+    .calendar {
+        width: 600px;
+        margin: 50px;
+    }
+
+    .header {
+        flex-direction: row;
+    }
+
+    .year-month {
+        font-size: 35px;
+    }
+
+    .nav {
+        flex-direction: row;
+    }
+
+    .nav-btn {
+        width: 28px;
+        height: 30px;
+        font-size: 16px;
+        line-height: 30px;
+    }
+
+    .days {
+        margin: 25px 0 10px;
+    }
+
+    .day {
+        width: calc(100% / 7);
+    }
+
+    .dates {
+        height: 500px;
+    }
+
+    .date {
+        padding: 15px;
+    }
+}

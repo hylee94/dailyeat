@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>DailyEat 커뮤니티</title>
     <!-- CSS 파일 링크 -->
-    <link rel="stylesheet" type="text/css" href="../../css/CommuView.css">
+    <link rel="stylesheet" type="text/css" href="/css/CommuView.css">
     <!-- Font Awesome 스크립트 추가 -->
     <script src="https://kit.fontawesome.com/849bb0fdc9.js" crossorigin="anonymous"></script>
 </head>
