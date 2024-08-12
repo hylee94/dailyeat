@@ -33,39 +33,6 @@ body {
     min-height: 100vh;
 }
 
-/* 헤더 스타일 */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
-header a{
-    font-family: 'MaplestoryOTFBold';
-}
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li {
-    margin-right: 15px;
-}
-
-nav ul li a {
-    font-family: 'NanumSquareRound';
-    text-decoration: none;
-    color: black;
-}
-
-.login-btn {
-    padding: 5px 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
 
 .section-divider {
     border: none;
@@ -82,12 +49,12 @@ nav ul li a {
 }
 
 main {
-    margin-top: 20px;
+    margin-top: 50px;
     flex: 1;
 }
 
-.post, .comments {
-    border-top: 1px solid #e0e0e0;
+.post .comments {
+    margin: 10px;
     padding: 10px 0;
 }
 
@@ -160,6 +127,7 @@ main {
 /* 댓글 입력 섹션 스타일 */
 .comment-section {
     margin-bottom: 20px;
+    position: relative;
 }
 
 .comment-section textarea {
@@ -172,9 +140,13 @@ main {
     margin-bottom: 10px;
 }
 
+.comment-btn-wrapper {
+    display: flex;
+    justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
+
+}
+
 .comment-btn {
-    display: block;
-    margin: 0 auto;
     padding: 5px 10px;
     background-color: #007BFF;
     color: white;
@@ -182,6 +154,12 @@ main {
     border-radius: 3px;
     cursor: pointer;
 }
+
+
+
+
+
+
 
 /* 댓글 목록 스타일 */
 .comments .comment {

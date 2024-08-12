@@ -6,30 +6,17 @@
     <meta charset="UTF-8">
     <title>DailyEat 커뮤니티</title>
     <!-- CSS 파일 링크 -->
-    <link rel="stylesheet" type="text/css" href="/css/CommuView.css">
+    <link rel="stylesheet" type="text/css" href="/css/CommuView.css?after">
     <!-- Font Awesome 스크립트 추가 -->
     <script src="https://kit.fontawesome.com/849bb0fdc9.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<!-- 내비게이션 메뉴 -->
+    <jsp:include page="../include/navbar.jsp"/>
 <!-- 전체 컨테이너 -->
 <div class="container">
-    <!-- 헤더 섹션 -->
-    <header>
-        <h1>DailyEat</h1>
-        <!-- 내비게이션 메뉴 -->
-        <nav>
-            <ul>
-                <li><a href="#">홈</a></li>
-                <li><a href="#">나의 기록</a></li>
-                <li><a href="#">커뮤니티</a></li>
-                <li><a href="#">마이페이지</a></li>
-            </ul>
-        </nav>
-        <!-- 로그인 버튼 -->
-        <button class="login-btn">로그인</button>
-    </header>
 
-    <!-- 게시글 영역 구분선 -->
+    게시글 영역 구분선 -->
     <hr class="section-divider">
 
     <!-- 메인 콘텐츠 영역 -->
@@ -73,7 +60,9 @@
         <!-- 댓글 입력 섹션 -->
         <section class="comment-section">
             <textarea placeholder="댓글을 쓰려면 로그인이 필요합니다."></textarea>
+            <div class="comment-btn-wrapper">
             <button class="comment-btn">댓글쓰기</button>
+            </div>
         </section>
 
         <!-- 댓글 목록 섹션 -->
@@ -92,10 +81,11 @@
     </main>
 
     <!-- 푸터 섹션 -->
-    <footer>
-        <hr class="footer-divider">
-        <p>DailyEat</p>
-    </footer>
+
 </div>
+<!-- 푸터 섹션 -->
+<footer>
+<jsp:include page="../include/footer.jsp"/>
+</footer>
 </body>
 </html>
