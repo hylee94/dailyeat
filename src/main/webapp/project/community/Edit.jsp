@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>파일 첨부형 게시판</title>
+    <title>글 수정하기</title>
+    <link rel="stylesheet" href="/css/CommuEdit.css">
     <script>
         function validateForm(form){
             if(form.name.value == ""){
@@ -25,41 +26,41 @@
 </head>
 
 <body>
-<h2>글 수정하기</h2>
+<jsp:include page="/project/include/navbar.jsp"/>
+<br/>
+<div class="container">
+<h2>작성글 수정</h2>
 <form name="writeFrm" method="post" action="../../mvcboard/edit.do" onsubmit="return validateForm(this);"
       enctype="multipart/form-data">
+    <div>
+        <div class="button-container">
+            <button type="submit" class="submit">작성 완료</button>
+            <button type="reset" class="reset">다시 입력</button>
+            <button type="button" class="list" onclick="location.href='../../mvcboard/list.do';">목록 보기</button>
+        </div>
+    </div>
     <input type="hidden" name="num" value="${dto.num}">
     <input type="hidden" name="prevOfile" value="${dto.ofile}">
     <input type="hidden" name="prevSfile" value="${dto.sfile}">
-    <table border="1" width="90%">
-        <tr>
-            <td>작성자</td>
-            <td><input type="text" name="id" style="width: 150px;" value="${dto.id}"/></td>
-        </tr>
-        <tr>
-            <td>제목</td>
-            <td><input type="text" name="title" style="width: 90%" value="${dto.title}"/></td>
-        </tr>
-        <tr>
-            <td>내용</td>
-            <td>
-                <textarea name="content" style="width: 90%; height: 100px">
+
+        <div class="writer">
+            <label for="id">작성자</label>
+            <input type="text" name="id" id="id" value="${dto.id}" readonly/>
+        </div>
+        <div>
+            <input type="text" name="title" class="title-area" value="${dto.title}"/>
+        </div>
+        <div>
+                <textarea name="content" class="content">
                     ${dto.content}
                 </textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>첨부파일</td>
-            <td><input type="file" name="ofile"></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <button type="submit">작성 완료</button>
-                <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='../mvcboard/list.do';">목록 보기</button>
-            </td>
-        </tr>
-    </table>
+        </div>
+        <div>
+            <input type="file" name="ofile" class="file-upload">
+        </div>
+
 </form>
+</div>
+<jsp:include page="/project/include/footer.jsp"/>
 </body>
 </html>
