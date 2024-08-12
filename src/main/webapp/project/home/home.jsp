@@ -25,20 +25,24 @@
         background-color: #F4F7FD;
         width: 100%;
         height: 600px;
-        /*배경 이미지*/
-        /*background-image: url("");*/
-        /*background-repeat: no-repeat;*/
-        /*background-position: center center;*/
-        /*background-size: 100% 100%;*/
+
+        /* 배경 이미지 */
+        background-image: url("../../image/home_background3.jpg");
+        background-repeat: no-repeat;
+
+
+        /* 배경 크기 조정 */
+        background-size: cover; /* 배경 이미지를 섹션에 맞게 조정 */
+
     }
 
     .home-section > h1 {
-        margin-top: 150px;
+        margin-top: 260px;
     }
     /*시작하기 버튼 */
     #start-button {
         padding: 15px 100px;
-        margin-top: 150px;
+        margin-top: 80px;
         margin-left: 5px;
         background-color: #0d9bf1;
         border-radius: 35px; /* 각을 둥글게 설정 */
@@ -134,7 +138,7 @@
 <jsp:include page="../include/navbar.jsp"></jsp:include>
 <!-- 1 - 홈파트 -->
 <div class="home-section">
-    <h1>기억하기 힘든 하루의 모든 정보를 <br> 한 곳에서 확인하세요</h1>
+    <h1><b>기억하기 힘든 하루의 모든 정보를 <br> 한 곳에서 확인하세요</b></h1>
     <button id="start-button">시작하기</button>
 </div>
 

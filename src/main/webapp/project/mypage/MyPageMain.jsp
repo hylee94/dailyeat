@@ -286,7 +286,7 @@
 </head>
 <body>
 <header>
-    <jsp:include page="../../navbar_footer/navbar.jsp"></jsp:include>
+    <jsp:include page="../include/navbar.jsp"></jsp:include>
 </header>
 <
 <section class="myPage-content">
@@ -296,7 +296,7 @@
     <section class="myPage-main">
         <div class="myPage-main-title">
             <h1 class="myPage-title">마이페이지</h1>
-            <span class="myPage-subject">프로필 이미지를 변경할 수 있습니다.</span>
+            <span class="myPage-subject">개인정보를 변경할 수 있습니다.</span>
         </div>
 
         <section>
@@ -335,12 +335,12 @@
                 <span class="info">${loginMember.user_email}</span>
 
                 <label>닉네임
-                    <button class="nickname_change">수정</button>
+                    <button class="nickname_change" onclick="location.href='MyPage_nickname_change.jsp'">수정</button>
                 </label>
                 <span class="info">${loginMember.user_nickname}</span>
 
                 <label> 비밀번호
-                    <button class="pass_change">수정</button>
+                    <button class="pass_change" onclick="location.href='Mypage_pass_change.jsp'">수정</button>
                 </label>
 
                 <div style="width: 52%; margin-top: 10px">
@@ -354,7 +354,7 @@
 
 
 <footer>
-    <jsp:include page="../../navbar_footer/footer.jsp"></jsp:include>
+    <jsp:include page="../include/footer.jsp"></jsp:include>
 </footer>
 
 </body>

@@ -307,7 +307,7 @@
 </head>
 <body>
 <header>
-    <jsp:include page="../../navbar_footer/navbar.jsp"></jsp:include>
+    <jsp:include page="../include/navbar.jsp"></jsp:include>
 </header>
 <
 <section class="myPage-content">
@@ -317,13 +317,13 @@
     <section class="myPage-main">
         <div class="myPage-main-title">
             <h1 class="myPage-title">마이페이지</h1>
-            <span class="myPage-subject">프로필 이미지를 변경할 수 있습니다.</span>
+            <span class="myPage-subject">비밀번호를 변경할 수 있습니다.</span>
         </div>
 
         <section>
             <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
                 <div class="mypage_top">
-                    <div class="profile-image-area">
+                    <div class="profile-image-area" style="margin-right: 35px; margin-bottom: 25px">
                         <%-- 프로필 이미지가 없으면 기본 이미지 --%>
                         <c:if test="${empty loginMember.profileImage}">
                             <img src="/image/user_default_img.png" id="profileImage">
@@ -336,11 +336,6 @@
 
                     </div>
 
-                    <div class="profile-btn-area">
-                        <label for="imageInput">이미지 선택</label>
-                        <input type="file" name="profileImage" id="imageInput" accept="image/*" class="img_input">
-                        <button class="img_change">변경하기</button>
-                    </div>
                 </div>
 
 
@@ -363,7 +358,7 @@
 
 
 <footer>
-    <jsp:include page="../../navbar_footer/footer.jsp"></jsp:include>
+    <jsp:include page="../include/footer.jsp"></jsp:include>
 </footer>
 
 </body>

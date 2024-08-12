@@ -88,7 +88,7 @@
 <!-- nav 바 시작-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><b>dailyEat</b></a>
+        <a class="navbar-brand" href="../home/Home.jsp"><b>dailyEat</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -96,20 +96,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">홈</a>
+                    <a class="nav-link active" aria-current="page" href="../home/Home.jsp">홈</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">나의 기록</a>
+                    <a class="nav-link" href="../calendar/Calendar.jsp">나의 기록</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">커뮤니티</a>
+                    <a class="nav-link" href="../community/CommuMain.jsp">커뮤니티</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">마이페이지</a>
+                    <a class="nav-link" href="../mypage/MyPageMain.jsp">마이페이지</a>
                 </li>
 
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary btn-sm aria-disabled=true">로그인</button>
+                    <button type="button" class="btn btn-primary btn-sm aria-disabled=true" onclick="location.href='../login/LoginMain.jsp'">로그인 </button>
                 </li>
             </ul>
         </div>
