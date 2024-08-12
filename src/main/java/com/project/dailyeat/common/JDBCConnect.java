@@ -21,7 +21,7 @@ public class JDBCConnect {
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
             //DB 연결
-            String url = "jdbc:oracle:thin:@Localhost:1521:xe"; //자기 자신의 IP : 127.0.0.1 or Localhost
+            String url = "jdbc:oracle:thin:@10.100.103.31:1521:xe"; //자기 자신의 IP : 127.0.0.1 or Localhost
             String id = "scott";
             String pass = "tiger";
 
