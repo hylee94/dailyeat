@@ -42,6 +42,21 @@ form {
     flex-direction: column;
 }
 
+.writer {
+    display: flex;
+    align-items: center; /* label과 input을 세로로 가운데 정렬 */
+    padding: 10px;
+}
+
+.writer label {
+    margin-right: 20px; /* label과 input 사이의 간격 */
+}
+
+.writer input {
+    flex-grow: 1; /* input이 남은 공간을 차지하도록 설정 */
+    min-width: 200px; /* input의 최소 폭 설정 */
+}
+
 /* 입력창 및 텍스트 영역 스타일 */
 input[type="text"],
 textarea,
@@ -140,7 +155,7 @@ textarea {
     input[type="text"],
     textarea,
     input[type="password"],
-    input[type="file"] {
+    input[type="file"]{
         width: 100%;
     }
 
