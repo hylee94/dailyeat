@@ -143,6 +143,17 @@ input:checked + .slider:before {
     border-radius: 5px;
 }
 
+
+.input-fields {
+    display: none; /* 기본적으로 숨김 */
+}
+
+.input-fields.visible {
+    display: block; /* 활성화되면 보이기 */
+}
+
+
+
 .meal-info h2 {
     font-size: 20px;
     margin-bottom: 10px;
@@ -204,9 +215,20 @@ input:checked + .slider:before {
     background-color: #3571FF;
 }
 
-.kal{
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    justify-content: flex-end;
+.bts:hover {
+    background-color: blue; /* 버튼에 마우스를 올렸을 때 색상 */
 }
+.bts.active {
+    background-color: blue;  /* 클릭 시 활성화된 버튼 색상 */
+}
+
+
+
+
+/*.kal{*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    margin-bottom: 10px;*/
+/*    justify-content: flex-end;*/
+/*}*/
+

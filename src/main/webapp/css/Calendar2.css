@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'NanumSquareRound', 'sans-serif';
 }
 body {
@@ -13,7 +13,7 @@ body {
 
 .left-section {
     flex: 1;
-    background-color: #F4F7FD; /* Optional: background color for left section */
+    background-color: #F4F7FD;
 }
 
 .right-section {
@@ -43,6 +43,8 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
 }
 
 .meal-entry img {
@@ -71,15 +73,27 @@ body {
     background-color: #3571FF;
 }
 
-.meal-entry > img{
-    width: 60px;
-    height: 60px;
+.calories {
+    font-weight: bold;
+    margin-left: auto;
     margin-right: 10px;
-
 }
-@font-face {
-    font-family: 'NanumSquareRound';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.arrow.open {
+    transform: rotate(180deg);
+}
+
+.meal-content {
+    display: none; /* 기본적으로 숨김 */
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
