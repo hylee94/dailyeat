@@ -286,7 +286,7 @@
 </head>
 <body>
 <header>
-    <jsp:include page="../../navbar_footer/navbar.jsp"></jsp:include>
+    <jsp:include page="/project/include/navbar.jsp"/>
 </header>
 <
 <section class="myPage-content">
@@ -354,7 +354,7 @@
 
 
 <footer>
-    <jsp:include page="../../navbar_footer/footer.jsp"></jsp:include>
+    <jsp:include page="/project/include/footer.jsp"/>
 </footer>
 
 </body>

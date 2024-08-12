@@ -11,7 +11,7 @@
     <!-- FontAwesome CDN 링크 추가 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<jsp:include page="/navbar_footer/navbar.jsp"/>
+<jsp:include page="../include/navbar.jsp"/>
 <br/>
 <body>
 <div class="container">
@@ -101,6 +101,6 @@
 </table>
 </div>
 <br/>
-<jsp:include page="/navbar_footer/footer.jsp"/>
+<jsp:include page="/project/include/footer.jsp"/>
 </body>
 </html>

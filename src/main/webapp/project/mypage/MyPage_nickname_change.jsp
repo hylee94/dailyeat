@@ -303,7 +303,7 @@
 </head>
 <body>
 <header>
-    <jsp:include page="../../navbar_footer/navbar.jsp"></jsp:include>
+    <jsp:include page="/project/include/navbar.jsp"/>
 </header>
 <
 <section class="myPage-content">
@@ -358,10 +358,8 @@
 
 </section>
 
+<jsp:include page="/project/include/footer.jsp"/>
 
-<footer>
-    <jsp:include page="../../navbar_footer/footer.jsp"></jsp:include>
-</footer>
 
 </body>
 </html>

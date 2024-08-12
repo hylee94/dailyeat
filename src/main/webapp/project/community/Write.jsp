@@ -31,7 +31,7 @@
       }
     </script>
   </head>
-<jsp:include page="/navbar_footer/navbar.jsp"/>
+<jsp:include page="/project/include/navbar.jsp"/>
 <br/>
 <body>
 <div class="container">
@@ -61,5 +61,5 @@
 </form>
 </div>
 </body>
-<jsp:include page="/navbar_footer/footer.jsp"/>
+<jsp:include page="/project/include/footer.jsp"/>
 </html>

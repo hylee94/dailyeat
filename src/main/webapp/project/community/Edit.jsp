@@ -25,6 +25,7 @@
 </head>
 
 <body>
+<jsp:include page="/project/include/navbar.jsp"/>
 <h2>글 수정하기</h2>
 <form name="writeFrm" method="post" action="../../mvcboard/edit.do" onsubmit="return validateForm(this);"
       enctype="multipart/form-data">
@@ -61,5 +62,6 @@
         </tr>
     </table>
 </form>
+<jsp:include page="/project/include/footer.jsp"/>
 </body>
 </html>

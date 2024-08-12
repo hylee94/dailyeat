@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/849bb0fdc9.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <!-- 전체 컨테이너 -->
 <div class="container">
     <!-- 헤더 섹션 -->
@@ -91,11 +92,7 @@
         </section>
     </main>
 
-    <!-- 푸터 섹션 -->
-    <footer>
-        <hr class="footer-divider">
-        <p>DailyEat</p>
-    </footer>
 </div>
+    <jsp:include page="/project/include/footer.jsp"/>
 </body>
 </html>
