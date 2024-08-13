@@ -14,7 +14,7 @@
 <div class="container">
     <!-- 로고 이미지 -->
     <div class="logo">
-        <a href="../home/HomeMain.jsp">
+        <a href="/project/home/Home.jsp">
         <img src="../../image/logo.png" alt="DailyEat Logo">
         </a>
     </div>
