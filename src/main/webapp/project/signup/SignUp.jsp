@@ -32,8 +32,12 @@
         </div>
         <!-- 비밀번호 입력 그룹 -->
         <div class="input-group">
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+            <label for="password1">비밀번호</label>
+            <input type="password" id="password1" name="password" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div class="input-group">
+            <label for="password2">비밀번호 확인</label>
+            <input type="password" id="password2" name="password" placeholder="비밀번호를 입력하세요">
         </div>
         <!-- 닉네임 입력 그룹 -->
         <div class="input-group">

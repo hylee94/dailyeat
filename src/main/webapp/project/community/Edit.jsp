@@ -26,7 +26,7 @@
 </head>
 
 <body>
-<jsp:include page="/project/include/navbar.jsp"/>
+<jsp:include page="../include/navbar.jsp"/>
 <br/>
 <div class="container">
 <h2>작성글 수정</h2>
@@ -61,6 +61,6 @@
 
 </form>
 </div>
-<jsp:include page="/project/include/footer.jsp"/>
+<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

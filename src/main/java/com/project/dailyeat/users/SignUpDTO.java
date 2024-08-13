@@ -1,6 +1,6 @@
 package com.project.dailyeat.users;
 
-public class UsersDTO {
+public class SignUpDTO {
     private String id;
     private String password;
     private String nickname;
