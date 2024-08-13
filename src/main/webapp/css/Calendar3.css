@@ -9,6 +9,7 @@
     font-family: 'NanumSquareRound', 'sans-serif';
 }
 
+
 body {
     margin: 0;
     font-family: 'NanumSquareRound', sans-serif;
@@ -19,6 +20,7 @@ body {
     height: 100vh;
 }
 
+/* left-section */
 .left-section {
     flex: 1;
     background-color: #F4F7FD;
@@ -29,11 +31,12 @@ body {
 .right-section {
     flex: 1;
     background-color: #FFFFFF;
+    border-left: 2px solid #C4C4C4;
     padding: 20px;
     position: relative;
 }
-
 h2 {
+
     font-size: 20px;
     margin-bottom: 10px;
 }
@@ -155,7 +158,7 @@ input:checked + .slider:before {
 
 
 .meal-info h2 {
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
@@ -179,8 +182,11 @@ input:checked + .slider:before {
 }
 
 .calories {
-    font-size: 14px;
-    color: #555;
+    /*font-size: 14px;*/
+    /*color: #555;*/
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: 10px;
 }
 
 .meal-list {
@@ -194,25 +200,30 @@ input:checked + .slider:before {
     font-size: 14px;
     color: #555;
 }
-
 .add-button {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     background-color: #0d9bf1;
     color: white;
     font-size: 24px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    margin-right: 70px;
-    margin-bottom: 70px;
+    /*margin-right: 70px;*/
+    /*margin-bottom: 70px;*/
 }
 
 .add-button:hover {
     background-color: #3571FF;
+}
+
+.add-food{
+    margin-left: auto;
+    background-color: mediumpurple;
+    font-family: 'NanumSquareRound', 'sans-serif';
 }
 
 .bts:hover {
@@ -225,10 +236,60 @@ input:checked + .slider:before {
 
 
 
-/*.kal{*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    margin-bottom: 10px;*/
-/*    justify-content: flex-end;*/
-/*}*/
+/*!* right-section *!*/
+.left-section {
+    flex: 1;
+    background-color: #F4F7FD;
+    padding: 20px;
+    border-right: 2px solid #C4C4C4;
+}
+
+.right-section {
+    flex: 1;
+    background-color: #FFFFFF;
+    border-left: 2px solid #C4C4C4;
+    padding: 20px;
+    position: relative;
+}
+
+.meal-info {
+    margin-top: 20px;
+}
+
+.meal-entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.meal-entry img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.arrow.open {
+    transform: rotate(180deg);
+}
+
+.meal-content {
+    display: none; /* 기본적으로 숨김 */
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
 

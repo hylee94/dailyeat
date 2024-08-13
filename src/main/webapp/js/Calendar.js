@@ -102,3 +102,46 @@ const goToday = () => {
     date = new Date();
     renderCalendar();
 }
+
+// 모달 영역
+document.addEventListener('DOMContentLoaded', () => {
+    const datesContainer = document.querySelector('.dates');
+    const modal = document.getElementById('modal');
+    const closeBtn = document.querySelector('.close-btn');
+    const backBtn = document.querySelector('.back-btn');
+
+    // 날짜를 클릭했을 때 모달을 열기
+    datesContainer.addEventListener('click', (event) => {
+        if (event.target.classList.contains('date')) {
+            openModal();
+        }
+    });
+
+    // 모달을 열기
+    function openModal() {
+        modal.style.display = 'block';
+    }
+
+    // 모달을 닫기
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // 뒤로가기 버튼 클릭 시 이전 페이지로 이동
+    function goBack() {
+        window.history.back();
+    }
+
+    // 모달 닫기 버튼 클릭 시 모달 닫기
+    closeBtn.addEventListener('click', closeModal);
+
+    // 모달 외부 클릭 시 모달 닫기
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // 뒤로가기 버튼 클릭 시 페이지 이동
+    backBtn.addEventListener('click', goBack);
+});

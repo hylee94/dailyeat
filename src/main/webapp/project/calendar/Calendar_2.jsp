@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>나의 식단정보</title>
+  <title>나의 식단정보222222</title>
   <link rel="stylesheet" href="../../css/Calendar2.css">
 </head>
 <body>
@@ -58,13 +58,17 @@
       <div class="meal-content">
         <p>추가 정보가 여기에 표시됩니다.</p>
       </div>
-      <!-- Add more meal entries as needed -->
     </div>
 
-    <button class="add-button">+</button>
+    <button class="add-button" onclick="goToCalendar3()">+</button>
   </div>
 </div>
 
 <script src="/js/Calendar_2.js"></script>
+<script>
+  function goToCalendar3() {
+    window.location.href = '../calendar/Calendar_3.jsp'; // Calendar_3.jsp 으로 이동
+  }
+</script>
 </body>
 </html>

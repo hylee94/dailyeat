@@ -48,6 +48,19 @@
             <div class="dates"></div>
         </div>
     </div>
+
+    <!-- 모달 창 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <%--뒤로가기 버튼--%>
+            <span class="back-btn" onclick="goBack()">&larr;</span>
+            <%--닫기 버튼--%>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <%--모달 내용--%>
+            <iframe src="../calendar/Calendar_2.jsp" frameborder="0"></iframe>
+        </div>
+    </div>
+
     <script src="/js/Calendar.js"></script>
 
 </main>
