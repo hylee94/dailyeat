@@ -31,6 +31,7 @@
         background-repeat: no-repeat;
 
 
+
         /* 배경 크기 조정 */
         background-size: cover; /* 배경 이미지를 섹션에 맞게 조정 */
 

@@ -18,7 +18,7 @@
 <div class="container">
     <!-- 로고 이미지 -->
     <div class="logo">
-        <a href="../home/HomeMain.jsp">
+        <a href="/project/home/Home.jsp">
             <img src="../../image/logo.png" alt="DailyEat Logo">
         </a>
     </div>
@@ -28,11 +28,11 @@
     <!-- 구분선 -->
     <hr class="divider">
     <!-- 로그인 폼 -->
-    <form action="">
-        <label for="username">아이디</label>
-        <input type="text" id="username" placeholder="아이디를 입력해 주세요">
+    <form action="/login.do" method="post">
+        <label for="id">아이디</label>
+        <input type="text" id="id" name="id" placeholder="아이디를 입력해 주세요" required>
         <label for="password">비밀번호</label>
-        <input type="password" id="password" placeholder="비밀번호를 입력해 주세요">
+        <input type="password" id="password" name="password" placeholder="비밀번호를 입력해 주세요" required>
         <button type="submit">로그인</button>
     </form>
     <!-- 아이디/비밀번호 찾기 링크 -->
@@ -41,7 +41,7 @@
     </div>
     <!-- 회원가입 링크 -->
     <div class="signup">
-        <p>아직 회원이 아니신가요? <a href="../singup/SingUp.jsp" target="_blank">회원가입</a></p>
+        <p>아직 회원이 아니신가요? <a href="../signup/SignUp.jsp" target="_blank">회원가입</a></p>
     </div>
 </div>
 <!-- 푸터 -->

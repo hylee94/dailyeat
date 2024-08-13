@@ -43,21 +43,21 @@
       <button type="reset" class="reset">다시 입력</button>
       <button type="button" class="list" onclick="location.href='../../mvcboard/list.do';">목록 보기</button>
   </div>
-  <table>
-    <tr>
-      <td><input type="text" name="title" placeholder="제목" class="title-area" /></td>
-    </tr>
-    <tr>
-      <td><textarea name="content" id="textarea" ></textarea></td>
-    </tr>
-    <tr>
-      <td><input type="file" name="ofile"></td>
-    </tr>
-    <tr>
-      <td>비밀번호</td>
-      <td><input type="password" name="pass" width="100px;"></td>
-    </tr>
-  </table>
+  <div>
+    <div>
+      <input type="text" name="title" placeholder="제목" class="title-area" />
+    </div>
+    <div>
+      <textarea name="content" id="textarea" class="content"></textarea>
+    </div>
+    <div>
+      <input type="file" name="ofile" class="file-upload">
+    </div>
+    <div>
+      <p>비밀번호</p>
+      <input type="password" name="pass" width="100px;">
+    </div>
+  </div>
 </form>
 </div>
 </body>

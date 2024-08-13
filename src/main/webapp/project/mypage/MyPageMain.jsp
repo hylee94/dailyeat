@@ -209,8 +209,8 @@
 
     .mypage_information > span {
         width: 50%;
-        height: 30px;
-        padding: 15px; /* 패딩을 15px로 줄임 */
+        height: 40px;
+        padding: 8px 15px; /* 패딩을 15px로 줄임 */
         margin-bottom: 15px;
         border: 1px solid #ddd;
         border-radius: 10px; /* 각을 둥글게 설정 */
@@ -281,14 +281,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>마이페이지</title>
 
 </head>
 <body>
 <header>
     <jsp:include page="../include/navbar.jsp"></jsp:include>
+    <br/>
 </header>
-<
+
 <section class="myPage-content">
 
 
@@ -328,16 +329,16 @@
             <div class="mypage_information">
                 <label> <!--for="username"-->아이디
                 </label>
-                <span class="info">${loginMember.user_id}</span>
+                <span class="info">${loginMember.id}</span>
 
                 <label> <!--for="username"-->이메일
                 </label>
-                <span class="info">${loginMember.user_email}</span>
+                <span class="info">${loginMember.email}</span>
 
                 <label>닉네임
                     <button class="nickname_change" onclick="location.href='MyPage_nickname_change.jsp'">수정</button>
                 </label>
-                <span class="info">${loginMember.user_nickname}</span>
+                <span class="info">${loginMember.nickname}</span>
 
                 <label> 비밀번호
                     <button class="pass_change" onclick="location.href='Mypage_pass_change.jsp'">수정</button>
