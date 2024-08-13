@@ -41,7 +41,7 @@
     </div>
     <!-- 회원가입 링크 -->
     <div class="signup">
-        <p>아직 회원이 아니신가요? <a href="../singup/SingUp.jsp" target="_blank">회원가입</a></p>
+        <p>아직 회원이 아니신가요? <a href="../signup/SignUp.jsp" target="_blank">회원가입</a></p>
     </div>
 </div>
 <!-- 푸터 -->
