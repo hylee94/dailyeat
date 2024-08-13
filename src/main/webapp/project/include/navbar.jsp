@@ -88,7 +88,7 @@
 <!-- nav 바 시작-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav">
     <div class="container-fluid">
-        <a class="navbar-brand" href="../home/Home.jsp"><b>dailyEat</b></a>
+        <a class="navbar-brand" href="/project/home/Home.jsp"><b>dailyEat</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -102,7 +102,7 @@
                     <a class="nav-link" href="/project/calendar/Calendar.jsp">나의 기록</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/project/community/CommuMain.jsp">커뮤니티</a>
+                    <a class="nav-link" href="../../mvcboard/list.do">커뮤니티</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/mypage.do">마이페이지</a>
