@@ -26,13 +26,21 @@ public class LoginController extends HttpServlet {
         dto.setPassword(password);
 
         LoginDAO dao = new LoginDAO();
-        boolean isChecked = dao.userLogin(dto); // 로그인 메서드를 수정하여 UserDTO 객체 반환
+        UserDTO user = dao.userLogin(dto); // 로그인 메서드를 수정하여 UserDTO 객체 반환
 
-        if (isChecked) {
+        if (user != null) {
             // 로그인 성공 시 세션에 사용자 ID 저장
             HttpSession session = req.getSession();
-            session.setAttribute("id", id);
-            JSFunction.alertLocation(resp, "로그인에 성공했습니다.", req.getContextPath() + "/project/home/Home.jsp");
+            session.setAttribute("loginMember", user); // 세션에 사용자 정보 저장
+
+            //원래 가고자 했던 URL이 있으면 그 URL로 리다이렉트, 없으면 홈으로 이동
+            String redirectURL = (String) session.getAttribute("redirectAfterLogin");
+            if (redirectURL != null) {
+                session.removeAttribute("redirectAfterLogin");// 한 번 사용한 후에는 제거
+                resp.sendRedirect(req.getContextPath() + redirectURL);
+            }else {
+                JSFunction.alertLocation(resp, "로그인에 성공했습니다.", req.getContextPath() + "/project/home/Home.jsp");
+            }
         } else {
             JSFunction.alertBack(resp, "로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
         }

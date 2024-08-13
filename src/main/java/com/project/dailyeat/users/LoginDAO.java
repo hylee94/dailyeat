@@ -13,8 +13,8 @@ public class LoginDAO {
         dbConnPool = new DBConnPool();
     }
 
-    public boolean userLogin(LoginDTO dto) {
-        boolean isChecked = false;
+    public UserDTO userLogin(LoginDTO dto) {
+        UserDTO user = null;
         String query = "SELECT * FROM PROJECT.USERS WHERE id=? AND password=?";
 
         try {
@@ -24,7 +24,12 @@ public class LoginDAO {
 
             ResultSet rs = psmt.executeQuery();
             if (rs.next()) {
-                isChecked = true;
+                //로그인 성공 시 UserDTO 객체 생성 및 값 설정
+                user = new UserDTO();
+                user.setId(rs.getString("id"));
+                user.setPassword(rs.getString("password"));
+                user.setNickname(rs.getString("nickname"));
+                user.setEmail(rs.getString("email"));
             }
             rs.close();
             psmt.close();
@@ -34,6 +39,6 @@ public class LoginDAO {
         }finally {
             dbConnPool.close();
         }
-        return isChecked;
+        return user;
     }
 }

@@ -1,6 +1,8 @@
 package com.project.dailyeat.mvcboard;
 
 import com.project.dailyeat.fileupload.FileUtil;
+import com.project.dailyeat.users.LoginDTO;
+import com.project.dailyeat.users.UserDTO;
 import com.project.dailyeat.util.JSFunction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -22,8 +24,12 @@ public class WriteController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 세션에서 로그인된 사용자 ID 확인
         HttpSession session = req.getSession(false);
-        if (session == null || session.getAttribute("id") == null) {
-            //로그인이 되어 있지 않다면 로그인 페이지로 리다이렉트
+        if (session == null || session.getAttribute("loginMember") == null) {
+            //로그인 상태가 아니라면, 가고자 했던 URL을 세션에 저장
+            session = req.getSession(true);//세션이 없으면 새로 생성
+            session.setAttribute("redirectAfterLogin", req.getRequestURI());
+
+            //로그인 페이지로 리다이렉트
             JSFunction.alertLocation(resp, "로그인이 필요합니다.", req.getContextPath() + "/project/login/LoginMain.jsp");
             return;
         }
@@ -36,13 +42,14 @@ public class WriteController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //세션에서 로그인된 사용자 ID 확인
         HttpSession session = req.getSession(false);
-        if (session == null || session.getAttribute("id") == null) {
+        UserDTO loginMember = (UserDTO) session.getAttribute("loginMember");
+        if (loginMember == null) {
             // 로그인이 되어 있지 않다면 로그인 페이지로 리다이렉트
-            resp.sendRedirect(req.getContextPath() + "/project/login/LoginMain.jsp");
+            JSFunction.alertLocation(resp, "로그인이 필요합니다.", req.getContextPath() + "/project/login/LoginMain.jsp");
             return;
         }
 
-        String id = (String) session.getAttribute("id");
+        String id = loginMember.getId();
 
         //파일 업로드 처리
         String saveDir = req.getServletContext().getRealPath("/upload");
@@ -80,7 +87,6 @@ public class WriteController extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("파일 업로드 실패");
             if (!resp.isCommitted()) {
                 JSFunction.alertLocation(resp, "파일 업로드 오류", req.getContextPath() + "../../mvcboard.write.do");
             }

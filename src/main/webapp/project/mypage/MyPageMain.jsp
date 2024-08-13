@@ -209,8 +209,8 @@
 
     .mypage_information > span {
         width: 50%;
-        height: 30px;
-        padding: 15px; /* 패딩을 15px로 줄임 */
+        height: 40px;
+        padding: 8px 15px; /* 패딩을 15px로 줄임 */
         margin-bottom: 15px;
         border: 1px solid #ddd;
         border-radius: 10px; /* 각을 둥글게 설정 */
@@ -281,14 +281,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>마이 페이지</title>
+    <title>마이페이지</title>
 
 </head>
 <body>
 <header>
     <jsp:include page="../include/navbar.jsp"></jsp:include>
+    <br/>
 </header>
-<
+
 <section class="myPage-content">
 
 
