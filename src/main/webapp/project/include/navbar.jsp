@@ -85,6 +85,7 @@
 </head>
 <body>
 
+
 <!-- nav 바 시작-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav">
     <div class="container-fluid">
