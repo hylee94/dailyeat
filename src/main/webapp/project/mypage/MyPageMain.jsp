@@ -281,7 +281,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>마이 페이지</title>
 
 </head>
 <body>
@@ -328,16 +328,16 @@
             <div class="mypage_information">
                 <label> <!--for="username"-->아이디
                 </label>
-                <span class="info">${loginMember.user_id}</span>
+                <span class="info">${loginMember.id}</span>
 
                 <label> <!--for="username"-->이메일
                 </label>
-                <span class="info">${loginMember.user_email}</span>
+                <span class="info">${loginMember.email}</span>
 
                 <label>닉네임
                     <button class="nickname_change" onclick="location.href='MyPage_nickname_change.jsp'">수정</button>
                 </label>
-                <span class="info">${loginMember.user_nickname}</span>
+                <span class="info">${loginMember.nickname}</span>
 
                 <label> 비밀번호
                     <button class="pass_change" onclick="location.href='Mypage_pass_change.jsp'">수정</button>

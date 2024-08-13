@@ -24,20 +24,20 @@
     <!-- 구분선 -->
     <hr class="divider">
     <!-- 회원가입 폼 -->
-    <form action="submit_form.jsp" method="post">
+    <form action="/signup/signup.do" method="post">
         <!-- 아이디 입력 그룹 -->
         <div class="input-group">
             <label for="username">아이디</label>
-            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요">
+            <input type="text" id="username" name="id" placeholder="아이디를 입력하세요">
         </div>
         <!-- 비밀번호 입력 그룹 -->
         <div class="input-group">
-            <label for="password1">비밀번호</label>
-            <input type="password" id="password1" name="password" placeholder="비밀번호를 입력하세요">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
         </div>
         <div class="input-group">
-            <label for="password2">비밀번호 확인</label>
-            <input type="password" id="password2" name="password" placeholder="비밀번호를 입력하세요">
+            <label for="confirmPassword">비밀번호 확인</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 다시 입력하세요">
         </div>
         <!-- 닉네임 입력 그룹 -->
         <div class="input-group">

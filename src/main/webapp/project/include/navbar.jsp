@@ -108,9 +108,22 @@
                     <a class="nav-link" href="../mypage/MyPageMain.jsp">마이페이지</a>
                 </li>
 
+                <%
+                    HttpSession session1 = request.getSession(false);
+                    if (session1 != null && session1.getAttribute("id") != null) {
+                %>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-primary btn-sm aria-disabled=true" onclick="location.href='/logout.do'">로그아웃 </button>
+                </li>
+                <%
+                    } else {
+                %>
                 <li class="nav-item">
                     <button type="button" class="btn btn-primary btn-sm aria-disabled=true" onclick="location.href='../login/LoginMain.jsp'">로그인 </button>
                 </li>
+                <%
+                    }
+                %>
             </ul>
         </div>
     </div>
