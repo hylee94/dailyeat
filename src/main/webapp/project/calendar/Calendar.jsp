@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/Calendar.css">
 </head>
 <body>
-<jsp:include page="../include/navbar.jsp"/>
+<jsp:include page="/project/include/navbar.jsp"/>
 <br/>
 <main id="container">
     <!--나의 기록 설명-->
@@ -53,6 +53,6 @@
 </main>
 
 <br/>
-<jsp:include page="../include/footer.jsp"/>
+<jsp:include page="/project/include/footer.jsp"/>
 </body>
 </html>
