@@ -172,10 +172,11 @@
 </footer>
 
 <script src="/js/Home.js"></script>
+
 <script>
     document.getElementById("start-button").addEventListener("click", function () {
         // 로그인 상태 확인 (Java 서버에서 세션 값을 JSP로 전달)
-        var isLoggedIn = '<%= session.getAttribute("user") != null %>';
+        var isLoggedIn = '<%= session.getAttribute("loginMember") != null %>';
 
         if (isLoggedIn === "true") {
             // 로그인되어 있으면 Calendar.jsp로 이동
@@ -185,7 +186,7 @@
             alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
             window.location.href = "../login/LoginMain.jsp";  // 로그인 페이지로 이동
         }
-    });
+    })
 </script>
 
 </body>
