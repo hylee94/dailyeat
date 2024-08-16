@@ -7,8 +7,17 @@ public class UserDTO {
     private String email;
     private String profileImage;
 
-    //getter, setter
+    public UserDTO() {
+    }
 
+    public UserDTO(String id, String email, String nickname, String password) {
+        this.id = id;
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+    }
+
+    //getter, setter
     public String getId() {
         return id;
     }

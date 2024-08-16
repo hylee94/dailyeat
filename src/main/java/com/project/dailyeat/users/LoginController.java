@@ -29,7 +29,7 @@ public class LoginController extends HttpServlet {
         UserDTO user = dao.userLogin(dto); // 로그인 메서드를 수정하여 UserDTO 객체 반환
 
         if (user != null) {
-            // 로그인 성공 시 세션에 사용자 ID 저장
+            // 로그인 성공 시 세션에 사용자 정보 저장
             HttpSession session = req.getSession();
             session.setAttribute("loginMember", user); // 세션에 사용자 정보 저장
 

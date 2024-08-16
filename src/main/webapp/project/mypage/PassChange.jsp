@@ -127,7 +127,8 @@
 
     /* ************* 프로필 화면 ************* */
     #profileFrm {
-        flex-direction: row;
+        /*flex-direction: row;*/
+        margin: 0 auto;
     }
 
     .profile-image-area {
@@ -140,7 +141,7 @@
         display: flex;
         justify-content: center;
         align-content: center;
-        margin-left: 35px;
+        margin: 10px;
     }
 
     #profileImage {
@@ -185,7 +186,7 @@
     }
 
     label {
-        width: 50%;
+        width: 90%;
         text-align: left;
         margin-bottom: 15px;
         font-weight: bold;
@@ -193,8 +194,9 @@
 
     /* 인풋 스타일 설정 */
     input {
-        width: 50%;
-        padding: 6px; /* 패딩을 15px로 줄임 */
+        width: 300px;
+        height: 40px;
+        padding: 8px 15px;/* 패딩을 15px로 줄임 */
         margin-bottom: 15px;
         border: 1px solid #ddd;
         border-radius: 10px; /* 각을 둥글게 설정 */
@@ -205,16 +207,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .mypage_information > span {
-        width: 50%;
-        height: 30px;
-        padding: 15px; /* 패딩을 15px로 줄임 */
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 10px; /* 각을 둥글게 설정 */
-        font-size: 1em;
+        margin: 30px;
     }
 
     .nickname_change, .pass_change, .id_change {
@@ -268,9 +261,8 @@
     }
 
     .ok{
-        padding: 5 100px;
-        margin-top: 150px;
-        margin-left: 5px;
+        padding: 5px 100px;
+        margin-top: 80px;
         background-color: #0d9bf1;
         border: none;
         border-radius: 10px; /* 각을 둥글게 설정 */
@@ -283,6 +275,9 @@
 
     .ok:active {
         background-color: #0d9bf1;
+    }
+    #user_pass{
+        margin-bottom: 15px;
     }
     /* 반응형 웹을 위한 미디어 쿼리 */
     @media (max-width: 600px) {
@@ -309,17 +304,17 @@
 <section class="myPage-content">
 
 
-    <!-- 마이페이지 설명 부분 -->
+    <!-- 오른쪽 마이페이지 주요 내용 부분 -->
     <section class="myPage-main">
         <div class="myPage-main-title">
             <h1 class="myPage-title">마이페이지</h1>
-            <span class="myPage-subject">닉네임을 변경할 수 있습니다.</span>
+            <span class="myPage-subject">비밀번호를 변경할 수 있습니다.</span>
         </div>
 
         <section>
-            <form action="profile" method="POST" name="myPageFrm" id="profileFrm" enctype="multipart/form-data">
+            <form action="/mypage/updatePassword" method="POST" name="myPageFrm" id="profileFrm">
                 <div class="mypage_top">
-                    <div class="profile-image-area" style="margin-right: 35px; margin-bottom: 25px">
+                    <div class="profile-image-area">
                         <%-- 프로필 이미지가 없으면 기본 이미지 --%>
                         <c:if test="${empty loginMember.profileImage}">
                             <img src="/image/user_default_img.png" id="profileImage">
@@ -335,19 +330,18 @@
                 </div>
 
 
-            </form>
-
             <div class="mypage_information">
-                <label> <!--for="username"-->현재 닉네임</label>
-                <span class="info">${loginMember.user_nickname}</span>
+                <input type="hidden" name="id" value="${loginMember.id}">
+                <label> <!--for="username"-->현재 비밀번호</label>
+                <input type="text" id="user_pass" name="currentPassword" placeholder="현재 비밀번호를 입력해주세요.">
 
-                <label>변경할 닉네임</label>
-                <input type="text" id="user_nickname" placeholder="변경하고싶은 닉네임을 입력해주세요.">
-                
+                <label>비밀번호 변경</label>
+                <input type="text" id="user_pass_change" name="newPassword" placeholder="변경하고싶은 비밀번호를 입력해주세요.">
                 <div>
-                    <button class="ok">확인</button>
+                    <button class="ok" type="submit">확인</button>
                 </div>
             </div>
+            </form>
         </section>
     </section>
 

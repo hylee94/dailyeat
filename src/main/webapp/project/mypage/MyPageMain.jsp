@@ -282,6 +282,17 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지</title>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();//기본 폼 제출 막기
+            var result = confirm("정말 탈퇴하시겠습니까?");
+
+            if (result) {
+                //확인 클릭 시 폼 제출
+                document.getElementById("deleteForm").submit();
+            }
+        }
+    </script>
 
 </head>
 <body>
@@ -336,16 +347,20 @@
                 <span class="info">${loginMember.email}</span>
 
                 <label>닉네임
-                    <button class="nickname_change" onclick="location.href='MyPage_nickname_change.jsp'">수정</button>
+                    <button class="nickname_change" onclick="location.href='/project/mypage/NicknameChange.jsp'">수정</button>
                 </label>
                 <span class="info">${loginMember.nickname}</span>
 
                 <label> 비밀번호
-                    <button class="pass_change" onclick="location.href='Mypage_pass_change.jsp'">수정</button>
+                    <button class="pass_change" onclick="location.href='/project/mypage/PassChange.jsp'">수정</button>
                 </label>
 
                 <div style="width: 52%; margin-top: 10px">
-                    <button class="user_out">>회원탈퇴</button>
+                    <%--회원 탈퇴 폼--%>
+                    <form id="deleteForm" action="/deleteUser" method="post">
+                        <input type="hidden" name="id" value="${loginMember.id}">
+                        <button type="submit" class="user_out" onclick="confirmDelete(event)">>회원탈퇴</button>
+                    </form>
                 </div>
             </div>
         </section>

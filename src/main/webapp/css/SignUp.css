@@ -82,15 +82,26 @@ label {
     font-weight: bold;
 }
 
+/* 인풋 그룹 스타일 설정 */
+.input-group {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: right; /* 레이블을 왼쪽으로 정렬 */
+}
+
+
 /* 인풋 스타일 설정 */
 input {
     width: 100%;
     padding: 15px;
-    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 10px;
     font-size: 1em;
 }
+
+/*#username, #nickname {*/
+/*    margin-bottom: 5px;*/
+/*}*/
 
 /* 버튼 스타일 설정 */
 button {
@@ -107,6 +118,29 @@ button {
 button:hover {
     background-color: #0b8be0;
 }
+
+.check-btn-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px; /* 입력칸과 버튼 간의 간격을 조절 */
+}
+
+/* 중복 확인 버튼 스타일 설정 */
+button.check-btn {
+    width: auto;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    background-color: #0d9bf1;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+button.check-btn:hover {
+    background-color: #0b8be0;
+}
+
 .login {
     margin-top: 20px;
 }

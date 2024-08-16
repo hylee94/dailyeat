@@ -7,6 +7,36 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="../../css/SignUp.css?after" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#checkIdBtn').click(function() {
+                const id = $('#username').val();
+
+                $.getJSON('/project/signup/checkDuplicate', { id: id }, function(data) {
+                    if (!data.idAvailable) {
+                        alert('아이디는 이미 사용 중입니다.');
+                        $('#username').focus();
+                    } else {
+                        alert('사용 가능한 아이디입니다.');
+                    }
+                });
+            });
+
+            $('#checkNicknameBtn').click(function() {
+                const nickname = $('#nickname').val();
+
+                $.getJSON('/project/signup/checkDuplicate', { nickname: nickname }, function(data) {
+                    if (!data.nicknameAvailable) {
+                        alert('닉네임은 이미 사용 중입니다.');
+                        $('#nickname').focus();
+                    } else {
+                        alert('사용 가능한 닉네임입니다.');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 
@@ -24,11 +54,14 @@
     <!-- 구분선 -->
     <hr class="divider">
     <!-- 회원가입 폼 -->
-    <form action="/signup/signup.do" method="post">
+    <form action="/signup/signup.do" method="post" id="signupForm">
         <!-- 아이디 입력 그룹 -->
         <div class="input-group">
             <label for="username">아이디</label>
             <input type="text" id="username" name="id" placeholder="아이디를 입력하세요">
+            <div class="check-btn-container">
+            <button type="button" id="checkIdBtn" class="check-btn">중복 확인</button>
+            </div>
         </div>
         <!-- 비밀번호 입력 그룹 -->
         <div class="input-group">
@@ -43,6 +76,9 @@
         <div class="input-group">
             <label for="nickname">닉네임</label>
             <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요">
+            <div class="check-btn-container">
+            <button type="button" id="checkNicknameBtn" class="check-btn">중복 확인</button>
+            </div>
         </div>
         <!-- 이메일 입력 그룹 -->
         <div class="input-group">

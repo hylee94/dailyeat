@@ -22,7 +22,13 @@ public class LogoutController extends HelloServlet {
             session.invalidate(); //세션 무효화
         }
 
-        JSFunction.alertLocation(resp, "로그아웃 되었습니다.", req.getContextPath() + "/project/home/Home.jsp");
+        String redirectUrl = req.getParameter("redirect");
+        String message = req.getParameter("message");
+        if (message != null) {
+            JSFunction.alertLocation(resp, message, req.getContextPath() + "/project/home/Home.jsp");
+        }else {
+            JSFunction.alertLocation(resp, "로그아웃 되었습니다.", req.getContextPath() + "/project/home/Home.jsp");
+        }
 
     }
 }
