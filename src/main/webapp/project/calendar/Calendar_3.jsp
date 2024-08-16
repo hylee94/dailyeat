@@ -30,6 +30,9 @@
     <script>
         let foodData = [];
 
+        //여기추가
+        let selectedMealType = '';
+
         // API로부터 데이터를 가져오는 함수
         function fetchFoodData() {
             fetch('http://openapi.foodsafetykorea.go.kr/api/e570fcacc04041baa0be/I2790/xml/1/1000')
@@ -62,6 +65,17 @@
 
         // 페이지 로드 시 데이터를 불러옴
         window.onload = fetchFoodData;
+
+        //여기추가 식사 버튼 클릭 시 해당 식사 유형 선택
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM이 완전히 로드되었습니다.');
+            document.querySelectorAll('.bts-1').forEach(button => {
+                button.addEventListener('click', function () {
+                    selectedMealType = this.textContent.toLowerCase();
+                    console.log('Selected Meal Type:', selectedMealType);
+                });
+            });
+        });
 
         function updateSuggestions() {
             const searchQuery = document.getElementById('foodSearch').value.toLowerCase();
@@ -109,11 +123,93 @@
                     <p><strong>지방:</strong> \${foundFood.fat} g</p>
 
                 `;
+                // `input-fields`의 입력란에 음식 정보를 채움
+                document.querySelector('#input-fields input:nth-of-type(1)').value = foundFood.name;
+                document.querySelector('#input-fields input:nth-of-type(2)').value = foundFood.calories;
+                document.querySelector('#input-fields input:nth-of-type(3)').value = foundFood.carbs;
+                document.querySelector('#input-fields input:nth-of-type(4)').value = foundFood.protein;
+                document.querySelector('#input-fields input:nth-of-type(5)').value = foundFood.fat;
             } else {
                 resultDiv.innerHTML = `<p>검색된 음식이 없습니다. 다시 시도해 주세요.</p>`;
+                // 검색 결과가 없을 때 입력란 초기화
+                document.querySelector('#input-fields input:nth-of-type(1)').value = '';
+                document.querySelector('#input-fields input:nth-of-type(2)').value = '';
+                document.querySelector('#input-fields input:nth-of-type(3)').value = '';
+                document.querySelector('#input-fields input:nth-of-type(4)').value = '';
+                document.querySelector('#input-fields input:nth-of-type(5)').value = '';
             }
 
             console.log('결과 HTML:', resultDiv.innerHTML); // 결과 HTML을 콘솔에 출력
+        }
+
+        function addFoodToMeal() {
+            const isManualEntry = document.getElementById('manual-entry-checkbox').checked;
+
+            let name, calories, carbs, protein, fat;
+
+            if (isManualEntry) {
+                // 직접 입력된 값 가져오기
+                name = document.getElementById('manual-name').value;
+                calories = document.getElementById('manual-calories').value;
+                carbs = document.getElementById('manual-carbs').value;
+                protein = document.getElementById('manual-protein').value;
+                fat = document.getElementById('manual-fat').value;
+
+                // 직접 입력된 음식 정보
+                const newFood = { name, calories, carbs, protein, fat };
+                foodData.push(newFood); // 직접 입력된 데이터도 배열에 추가
+            } else {
+                // 검색된 음식 정보
+                const searchQuery = document.getElementById('foodSearch').value.toLowerCase();
+                let foundFood = foodData.find(food => food.name.toLowerCase() === searchQuery);
+
+                if (foundFood && selectedMealType) {
+                    // 검색된 정보를 사용
+                    name = foundFood.name;
+                    calories = foundFood.calories;
+                    carbs = foundFood.carbs;
+                    protein = foundFood.protein;
+                    fat = foundFood.fat;
+                } else {
+                    alert('음식을 검색한 후 추가할 식사 유형을 선택하세요.');
+                    return;
+                }
+            }
+
+            if (name && calories && carbs && protein && fat && selectedMealType) {
+                const mealSection = document.querySelector(`.\${selectedMealType}-content`);
+                console.log('mealSection:', mealSection);
+
+                if (mealSection) {
+                    const caloriesSpan = mealSection.previousElementSibling.querySelector('.calories');
+                    if (caloriesSpan) {
+                        // 음식 항목을 식사 섹션에 추가
+                        const foodEntry = document.createElement('p');
+                        foodEntry.textContent = `\${name} - \${calories} kcal`;
+                        mealSection.appendChild(foodEntry);
+
+                        // 총 칼로리 업데이트
+                        let currentCalories = parseInt(caloriesSpan.textContent.replace('총 칼로리: ', '').replace(' kcal', ''));
+                        currentCalories += parseInt(calories);
+                        caloriesSpan.textContent = `총 칼로리: \${currentCalories} kcal`;
+                    } else {
+                        console.error('칼로리 스팬을 찾을 수 없습니다.');
+                    }
+                } else {
+                    console.error('식사 섹션을 찾을 수 없습니다.');
+                }
+
+                // 입력 필드 초기화
+                if (isManualEntry) {
+                    document.getElementById('manual-name').value = '';
+                    document.getElementById('manual-calories').value = '';
+                    document.getElementById('manual-carbs').value = '';
+                    document.getElementById('manual-protein').value = '';
+                    document.getElementById('manual-fat').value = '';
+                }
+            } else {
+                alert('모든 필드를 입력하고 식사 유형을 선택하세요.');
+            }
         }
     </script>
 </head>
@@ -124,10 +220,11 @@
         <p>음식 검색어를 입력하시고 Enter 키나 확인 버튼을 눌러주세요.</p>
 
         <div class="meal-buttons">
-            <button class="bts">아침</button>
-            <button class="bts">점심</button>
-            <button class="bts">저녁</button>
-            <button class="bts">간식</button>
+            <button class="bts bts-1">아침</button>
+            <button class="bts bts-1">점심</button>
+            <button class="bts bts-1">저녁</button>
+            <button class="bts bts-1">간식</button>
+            <button class="bts" onclick="addFoodToMeal()">추가하기</button>
         </div>
 
         <div class="search-bar" style="position: relative;">
@@ -137,6 +234,7 @@
         </div>
 
         <p>** 검색창에 없는 경우 직접 입력해주세요.</p>
+        <p>** 검색한 음식의 정보 수정을 원한다면 밑에 있는 버튼을 클릭해 창을 열고 수정 후 추가하기 버튼을 클릭하세요.</p>
         <div class="manual-entry">
             <label>직접 입력하기</label>
             <label class="switch">
@@ -147,15 +245,15 @@
 
         <div id="input-fields" class="input-fields">
             <p>메뉴 이름:</p>
-            <input type="text">
+            <input type="text" id="manual-name">
             <p>총 칼로리:</p>
-            <input type="text">
+            <input type="text" id="manual-calories">
             <p>탄수화물:</p>
-            <input type="text">
+            <input type="text" id="manual-carbs">
             <p>단백질:</p>
-            <input type="text">
+            <input type="text" id="manual-protein">
             <p>지방:</p>
-            <input type="text">
+            <input type="text" id="manual-fat">
         </div>
     </div>
 
@@ -167,40 +265,40 @@
             <div class="meal-entry" onclick="toggleMeal(this)">
                 <img src="../../image/morning.png" alt="아침 식단">
                 <p>아침 식단을 등록하세요</p>
-                <span class="calories">총 칼로리: 0</span>
+                <span class="calories morning-calories">총 칼로리: 0</span>
                 <img class="arrow" src="/image/down.png" alt="화살표">
             </div>
-            <div class="meal-content">
+            <div class="meal-content 아침-content">
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
             <div class="meal-entry" onclick="toggleMeal(this)">
                 <img src="../../image/lunch.png" alt="점심 식단">
                 <p>점심 식단을 등록하세요</p>
-                <span class="calories">총 칼로리: 0</span>
+                <span class="calories lunch-calories">총 칼로리: 0</span>
                 <img class="arrow" src="/image/down.png" alt="화살표">
             </div>
-            <div class="meal-content">
+            <div class="meal-content 점심-content">
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
             <div class="meal-entry" onclick="toggleMeal(this)">
                 <img src="../../image/dinner.png" alt="저녁 식단">
                 <p>저녁 식단을 등록하세요</p>
-                <span class="calories">총 칼로리: 0</span>
+                <span class="calories dinner-calories">총 칼로리: 0</span>
                 <img class="arrow" src="/image/down.png" alt="화살표">
             </div>
-            <div class="meal-content">
+            <div class="meal-content 저녁-content">
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
             <div class="meal-entry" onclick="toggleMeal(this)">
                 <img src="../../image/snack.png" alt="간식">
                 <p>간식 식단을 등록하세요</p>
-                <span class="calories">총 칼로리: 0</span>
+                <span class="calories snack-calories">총 칼로리: 0</span>
                 <img class="arrow" src="/image/down.png" alt="화살표">
             </div>
-            <div class="meal-content">
+            <div class="meal-content 간식-content">
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
         </div>
