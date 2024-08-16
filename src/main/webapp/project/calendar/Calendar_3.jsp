@@ -22,6 +22,21 @@
     .suggestion-item:hover {
         background-color: #f0f0f0;
     }
+    .result-button{
+        padding: 20px 35px;
+        background-color: #0d9bf1;
+        font-size: 20px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+    }
+    .result-button:hover{
+        background-color: #3571FF;
+    }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -51,11 +66,14 @@
                         const carbs = item.getElementsByTagName('NUTR_CONT2')[0]?.textContent || "0";
                         const protein = item.getElementsByTagName('NUTR_CONT3')[0]?.textContent || "0";
                         const fat = item.getElementsByTagName('NUTR_CONT4')[0]?.textContent || "0";
+                        const sugar= item.getElementsByTagName('NUTR_CONT5')[0]?.textContent || "0";
+                        const nat = item.getElementsByTagName('NUTR_CONT6')[0]?.textContent || "0";
 
                         // 파싱한 데이터를 콘솔에 출력
-                        console.log('음식:', name, '총내용량 단위:', gram ,'칼로리:', calories, '탄수화물:', carbs, '단백질:', protein, '지방:', fat);
+                        console.log('음식:', name, '총내용량 단위:', gram ,'칼로리:', calories, '탄수화물:', carbs, '단백질:', protein, '지방:', fat
+                                    , '당류:', sugar, '나트륨:', nat,);
 
-                        return { name, gram,calories, carbs, protein, fat };
+                        return { name, gram,calories, carbs, protein, fat ,sugar,nat};
                     });
 
                     console.log('파싱된 음식 데이터:', foodData);
@@ -121,14 +139,19 @@
                     <p><strong>탄수화물:</strong> \${foundFood.carbs} g</p>
                     <p><strong>단백질:</strong> \${foundFood.protein} g</p>
                     <p><strong>지방:</strong> \${foundFood.fat} g</p>
+                    <p><strong>당류:</strong> \${foundFood.sugar} g</p>
+                    <p><strong>나트륨:</strong> \${foundFood.nat} g</p>
 
                 `;
                 // `input-fields`의 입력란에 음식 정보를 채움
                 document.querySelector('#input-fields input:nth-of-type(1)').value = foundFood.name;
-                document.querySelector('#input-fields input:nth-of-type(2)').value = foundFood.calories;
-                document.querySelector('#input-fields input:nth-of-type(3)').value = foundFood.carbs;
-                document.querySelector('#input-fields input:nth-of-type(4)').value = foundFood.protein;
-                document.querySelector('#input-fields input:nth-of-type(5)').value = foundFood.fat;
+                document.querySelector('#input-fields input:nth-of-type(2)').value = foundFood.gram;
+                document.querySelector('#input-fields input:nth-of-type(3)').value = foundFood.calories;
+                document.querySelector('#input-fields input:nth-of-type(4)').value = foundFood.carbs;
+                document.querySelector('#input-fields input:nth-of-type(5)').value = foundFood.protein;
+                document.querySelector('#input-fields input:nth-of-type(6)').value = foundFood.fat;
+                document.querySelector('#input-fields input:nth-of-type(7)').value = foundFood.sugar;
+                document.querySelector('#input-fields input:nth-of-type(8)').value = foundFood.nat;
             } else {
                 resultDiv.innerHTML = `<p>검색된 음식이 없습니다. 다시 시도해 주세요.</p>`;
                 // 검색 결과가 없을 때 입력란 초기화
@@ -137,6 +160,9 @@
                 document.querySelector('#input-fields input:nth-of-type(3)').value = '';
                 document.querySelector('#input-fields input:nth-of-type(4)').value = '';
                 document.querySelector('#input-fields input:nth-of-type(5)').value = '';
+                document.querySelector('#input-fields input:nth-of-type(6)').value = '';
+                document.querySelector('#input-fields input:nth-of-type(7)').value = '';
+                document.querySelector('#input-fields input:nth-of-type(8)').value = '';
             }
 
             console.log('결과 HTML:', resultDiv.innerHTML); // 결과 HTML을 콘솔에 출력
@@ -145,7 +171,7 @@
         function addFoodToMeal() {
             const isManualEntry = document.getElementById('manual-entry-checkbox').checked;
 
-            let name, calories, carbs, protein, fat;
+            let name, calories, carbs, protein, fat, sugar, nat;
 
             if (isManualEntry) {
                 // 직접 입력된 값 가져오기
@@ -154,9 +180,11 @@
                 carbs = document.getElementById('manual-carbs').value;
                 protein = document.getElementById('manual-protein').value;
                 fat = document.getElementById('manual-fat').value;
+                sugar = document.getElementById('manual-sugar').value;
+                nat = document.getElementById('manual-nat').value;
 
                 // 직접 입력된 음식 정보
-                const newFood = { name, calories, carbs, protein, fat };
+                const newFood = { name, calories, carbs, protein, fat ,sugar,nat};
                 foodData.push(newFood); // 직접 입력된 데이터도 배열에 추가
             } else {
                 // 검색된 음식 정보
@@ -170,6 +198,8 @@
                     carbs = foundFood.carbs;
                     protein = foundFood.protein;
                     fat = foundFood.fat;
+                    sugar = foundFood.sugar;
+                    nat = foundFood.nat;
                 } else {
                     alert('음식을 검색한 후 추가할 식사 유형을 선택하세요.');
                     return;
@@ -206,6 +236,8 @@
                     document.getElementById('manual-carbs').value = '';
                     document.getElementById('manual-protein').value = '';
                     document.getElementById('manual-fat').value = '';
+                    document.getElementById('manual-sugar').value = '';
+                    document.getElementById('manual-nat').value = '';
                 }
             } else {
                 alert('모든 필드를 입력하고 식사 유형을 선택하세요.');
@@ -254,6 +286,10 @@
             <input type="text" id="manual-protein">
             <p>지방:</p>
             <input type="text" id="manual-fat">
+            <p>당류:</p>
+            <input type="text" id="manual-sugar">
+            <p>나트륨:</p>
+            <input type="text" id="manual-nat">
         </div>
     </div>
 
@@ -262,7 +298,7 @@
             <h2>나의 식단정보</h2>
             <p>음식 검색을 통해 음식을 추가하실 수 있습니다. 모든 음식을 입력하셨다면 입력 완료 버튼을 눌러주세요.</p>
 
-            <div class="meal-entry" onclick="toggleMeal(this)">
+            <div class="meal-entry" onclick="toggleMeal(this)" style="margin-bottom: 20px">
                 <img src="../../image/morning.png" alt="아침 식단">
                 <p>아침 식단을 등록하세요</p>
                 <span class="calories morning-calories">총 칼로리: 0</span>
@@ -272,7 +308,7 @@
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
-            <div class="meal-entry" onclick="toggleMeal(this)">
+            <div class="meal-entry" onclick="toggleMeal(this)"style="margin-bottom: 20px">
                 <img src="../../image/lunch.png" alt="점심 식단">
                 <p>점심 식단을 등록하세요</p>
                 <span class="calories lunch-calories">총 칼로리: 0</span>
@@ -282,7 +318,7 @@
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
-            <div class="meal-entry" onclick="toggleMeal(this)">
+            <div class="meal-entry" onclick="toggleMeal(this)"style="margin-bottom: 20px">
                 <img src="../../image/dinner.png" alt="저녁 식단">
                 <p>저녁 식단을 등록하세요</p>
                 <span class="calories dinner-calories">총 칼로리: 0</span>
@@ -292,7 +328,7 @@
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
-            <div class="meal-entry" onclick="toggleMeal(this)">
+            <div class="meal-entry" onclick="toggleMeal(this)"style="margin-bottom: 20px">
                 <img src="../../image/snack.png" alt="간식">
                 <p>간식 식단을 등록하세요</p>
                 <span class="calories snack-calories">총 칼로리: 0</span>
@@ -302,13 +338,18 @@
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
         </div>
-        <button class="add-button">+</button>
+        <button class="result-button" onclick="goToResult()">결과보기</button>
     </div>
 </div>
 
 <!-- 검색 결과를 표시할 부분 -->
-<div id="searchResult"></div>
+<div id="searchResult" style="display: none"></div>
 
 <script src="/js/Calendar_3.js"></script>
+<script>
+    function goToResult() {
+        window.location.href = '../calendar/Result.jsp'; // Calendar_3.jsp 으로 이동
+    }
+</script>
 </body>
 </html>
