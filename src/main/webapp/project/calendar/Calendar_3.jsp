@@ -348,7 +348,7 @@
 <script src="/js/Calendar_3.js"></script>
 <script>
     function goToResult() {
-        window.location.href = '../calendar/Result.jsp'; // Calendar_3.jsp 으로 이동
+        window.location.href = '../calendar/Result.jsp'; // Result.jsp 으로 이동
     }
 </script>
 </body>
