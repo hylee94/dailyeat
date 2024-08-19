@@ -1,3 +1,6 @@
+<%@ page import="com.project.dailyeat.mvcboard.ReplyDAO" %>
+<%@ page import="com.project.dailyeat.mvcboard.ReplyDTO" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -31,8 +34,8 @@
                     <span class="value">${ dto.id }</span>
                     <span class="label">작성일:</span>
                     <span class="value">${ dto.postdate }</span>
-                    <span class="label">조회수:</span>
-                    <span class="value">${ dto.visitcount }</span>
+                    <span class="label"><i class="fa-solid fa-eye" width="5%"></i></span>
+                    <span class="value">${dto.visitcount}</span>
                 </div>
             </div>
             <div class="post-title">
@@ -59,28 +62,49 @@
 
         <!-- 댓글 입력 섹션 -->
         <section class="comment-section">
-            <textarea placeholder="댓글을 쓰려면 로그인이 필요합니다."></textarea>
-            <div class="comment-btn-wrapper">
-            <button class="comment-btn">댓글쓰기</button>
-            </div>
+            <c:if test="${not empty sessionScope.loginMember}">
+                <form action="/mvcboard/insertReply" method="post">
+                    <textarea name="content" placeholder="댓글을 작성하세요" required></textarea>
+                    <input type="hidden" name="boardnum" value="${dto.num}">
+                    <div class="comment-btn-wrapper">
+                        <button class="comment-btn" type="submit">댓글쓰기</button>
+                    </div>
+                </form>
+            </c:if>
+            <c:if test="${empty sessionScope.loginMember}">
+                <p>댓글을 작성하려면 <a href="/project/login/LoginMain.jsp">로그인</a>이 필요합니다.</p>
+            </c:if>
         </section>
+
+
+
 
         <!-- 댓글 목록 섹션 -->
         <section class="comments">
-            <div class="comment">
-                <span class="author">강아지(닉네임)</span>
-                <span class="time">24분 전</span>
-                <p>댓글 내용: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
-            </div>
-            <div class="comment">
-                <span class="author">강아지(닉네임)</span>
-                <span class="time">24분 전</span>
-                <p>댓글 내용: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
-            </div>
+            <h3>댓글</h3>
+
+            <c:forEach var="comment" items="${replies}">
+                <div class="comment">
+                    <span class="author">${comment.id}</span> <!-- 댓글 작성자의 ID -->
+                    <span class="time">${comment.rdate}</span> <!-- 댓글 작성 시간 -->
+                    <p>${comment.content}</p> <!-- 댓글 내용 -->
+
+                    <c:if test="${sessionScope.userId == comment.id}">
+                        <form action="/mvcboard/deleteReply" method="post" style="display:inline;">
+                            <input type="hidden" name="boardnum" value="${comment.boardnum}">
+                            <input type="hidden" name="replyId" value="${comment.boardnum}">
+                            <button type="submit" class="delete-btn">삭제</button>
+                        </form>
+                    </c:if>
+                </div>
+            </c:forEach>
+
+            <!-- 댓글이 없을 경우 표시할 메시지 -->
+            <c:if test="${empty replies}">
+                <p>댓글이 없습니다.</p>
+            </c:if>
         </section>
     </main>
-
-    <!-- 푸터 섹션 -->
 
 </div>
 <!-- 푸터 섹션 -->
