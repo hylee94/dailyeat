@@ -145,3 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 뒤로가기 버튼 클릭 시 페이지 이동
     backBtn.addEventListener('click', goBack);
 });
+
+
+

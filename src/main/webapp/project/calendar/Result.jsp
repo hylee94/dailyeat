@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -48,7 +49,7 @@
         }
         .nutrition-info {
             font-size: 14px;
-            margin-bottom: 10px; /* 제목 아래로 이동할 수 있도록 여백을 변경했습니다 */
+            margin-bottom: 10px;
         }
         canvas {
             width: 100% !important;
@@ -58,8 +59,8 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
 
+<body>
 <div class="container">
     <div class="left-container">
         <h3>총 영양 성분</h3>
@@ -67,7 +68,6 @@
         <div class="left-item">탄수화물: <span id="totalCarbs"></span> g</div>
         <div class="left-item">단백질: <span id="totalProtein"></span> g</div>
         <div class="left-item">지방: <span id="totalFat"></span> g</div>
-        <!-- 총 비율을 보여줄 막대 그래프 추가 -->
         <div>
             <h3>총 비율</h3>
             <canvas id="totalRatioChart"></canvas>
@@ -156,7 +156,7 @@
             },
             options: {
                 responsive: true,
-                indexAxis: 'y', // 가로 막대
+                indexAxis: 'y',
                 plugins: {
                     legend: { display: true },
                     tooltip: {
@@ -167,7 +167,7 @@
                                     label += ': ';
                                 }
                                 if (context.raw !== null) {
-                                    label += context.raw + 'g';
+                                    label += context.raw + 'g'; // 실제 값을 g 단위로 표시
                                 }
                                 return label;
                             }
@@ -177,7 +177,7 @@
                 scales: {
                     x: {
                         beginAtZero: true,
-                        stacked: true, // X축에서 막대 쌓기
+                        stacked: true,
                         ticks: {
                             callback: function(value) {
                                 return value + 'g'; // X축의 라벨을 g로 표시
@@ -186,7 +186,7 @@
                     },
                     y: {
                         beginAtZero: true,
-                        stacked: true // Y축에서 막대 쌓기
+                        stacked: true
                     }
                 }
             }
@@ -194,7 +194,7 @@
     }
 
     const exampleData = {
-        morning: {calories: 300, carbs: 45, protein: 20, fat: 10},
+        morning: {calories: 350, carbs: 45, protein: 20, fat: 10},
         lunch: {calories: 600, carbs: 80, protein: 30, fat: 20},
         dinner: {calories: 500, carbs: 60, protein: 25, fat: 15},
         snack: {calories: 200, carbs: 30, protein: 10, fat: 5}
@@ -202,6 +202,7 @@
 
     function calculateTotal(data) {
         return {
+            calories: data.morning.calories + data.lunch.calories + data.dinner.calories + data.snack.calories,
             carbs: data.morning.carbs + data.lunch.carbs + data.dinner.carbs + data.snack.carbs,
             protein: data.morning.protein + data.lunch.protein + data.dinner.protein + data.snack.protein,
             fat: data.morning.fat + data.lunch.fat + data.dinner.fat + data.snack.fat
@@ -210,7 +211,7 @@
 
     const totalData = calculateTotal(exampleData);
 
-    document.getElementById('totalCalories').textContent = totalData.carbs + totalData.protein + totalData.fat;
+    document.getElementById('totalCalories').textContent = totalData.calories;
     document.getElementById('totalCarbs').textContent = totalData.carbs;
     document.getElementById('totalProtein').textContent = totalData.protein;
     document.getElementById('totalFat').textContent = totalData.fat;

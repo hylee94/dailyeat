@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
          pageEncoding="UTF-8"
 %>
+
 <html>
 <style>
     .suggestions {
@@ -71,7 +72,7 @@
 
                         // 파싱한 데이터를 콘솔에 출력
                         console.log('음식:', name, '총내용량 단위:', gram ,'칼로리:', calories, '탄수화물:', carbs, '단백질:', protein, '지방:', fat
-                                    , '당류:', sugar, '나트륨:', nat,);
+                            , '당류:', sugar, '나트륨:', nat,);
 
                         return { name, gram,calories, carbs, protein, fat ,sugar,nat};
                     });
@@ -243,6 +244,12 @@
                 alert('모든 필드를 입력하고 식사 유형을 선택하세요.');
             }
         }
+
+        //@@@@
+
+
+
+
     </script>
 </head>
 <body>
