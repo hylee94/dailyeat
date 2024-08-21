@@ -1,5 +1,6 @@
 let date = new Date();
 let selectedDateElement = null;
+let selectedDate = null; // 선택된 날짜 저장 변수
 
 const renderCalendar = () => {
     const viewYear = date.getFullYear();
@@ -45,7 +46,8 @@ const renderCalendar = () => {
             ? 'this'
             : 'other';
 
-        dates[i] = `<div class="date"><span class="${condition}">${date}</span></div>`;
+        const dataDate = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+        dates[i] = `<div class="date" data-date="${dataDate}"><span class="${condition}">${date}</span></div>`;
     });
 
     // 날짜를 HTML에 그리기
@@ -65,6 +67,10 @@ const renderCalendar = () => {
     // 날짜 클릭 이벤트 추가
     document.querySelectorAll('.date').forEach(dateWrapper => {
         dateWrapper.addEventListener('click', function () {
+            // 클릭된 날짜의 data-date 속성 값 가져오기
+            const dataDate = this.getAttribute('data-date'); // 선택된 날짜 저장
+
+            // 현재 클릭된 날짜의 span 요소 선택
             const dateSpan = this.querySelector('span');
 
             // 이전에 선택된 날짜의 스타일 초기화
@@ -77,6 +83,10 @@ const renderCalendar = () => {
 
             // 선택된 날짜 요소 저장
             selectedDateElement = dateSpan;
+            selectedDate = this.getAttribute('data-date'); // 선택된 날짜 저장
+
+            // 모달 열기
+            openModal(selectedDate);
         })
     })
 }
@@ -113,14 +123,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // 날짜를 클릭했을 때 모달을 열기
     datesContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('date')) {
-            openModal();
+            const date = event.target.getAttribute('data-date');
+            openModal(date);
         }
     });
 
     // 모달을 열기
-    function openModal() {
+    window.openModal = function(date) {
+        const iframe = document.querySelector('#modal iframe');
+        iframe.src = `/project/calendar/Calendar_2.jsp?date=${date}`;
         modal.style.display = 'block';
     }
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     renderCalendar();
+    // });
 
     // 모달을 닫기
     function closeModal() {

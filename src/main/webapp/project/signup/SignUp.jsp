@@ -13,9 +13,9 @@
             $('#checkIdBtn').click(function() {
                 const id = $('#username').val();
 
-                $.getJSON('/project/signup/checkDuplicate', { id: id }, function(data) {
+                $.getJSON('/signup/checkDuplicate', { id: id }, function(data) {
                     if (!data.idAvailable) {
-                        alert('아이디는 이미 사용 중입니다.');
+                        alert('사용 중인 아이디입니다.');
                         $('#username').focus();
                     } else {
                         alert('사용 가능한 아이디입니다.');
@@ -26,9 +26,9 @@
             $('#checkNicknameBtn').click(function() {
                 const nickname = $('#nickname').val();
 
-                $.getJSON('/project/signup/checkDuplicate', { nickname: nickname }, function(data) {
+                $.getJSON('/signup/checkDuplicate', { nickname: nickname }, function(data) {
                     if (!data.nicknameAvailable) {
-                        alert('닉네임은 이미 사용 중입니다.');
+                        alert('사용 중인 닉네임입니다.');
                         $('#nickname').focus();
                     } else {
                         alert('사용 가능한 닉네임입니다.');
@@ -64,11 +64,11 @@
             </div>
         </div>
         <!-- 비밀번호 입력 그룹 -->
-        <div class="input-group">
+        <div class="input-group input-group2">
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
         </div>
-        <div class="input-group">
+        <div class="input-group input-group2">
             <label for="confirmPassword">비밀번호 확인</label>
             <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 다시 입력하세요">
         </div>
@@ -81,7 +81,7 @@
             </div>
         </div>
         <!-- 이메일 입력 그룹 -->
-        <div class="input-group">
+        <div class="input-group input-group2">
             <label for="email">이메일</label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요">
         </div>

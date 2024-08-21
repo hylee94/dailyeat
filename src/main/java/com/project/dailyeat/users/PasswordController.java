@@ -1,6 +1,5 @@
 package com.project.dailyeat.users;
 
-import com.project.dailyeat.common.DBConnPool;
 import com.project.dailyeat.util.JSFunction;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -8,7 +7,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 

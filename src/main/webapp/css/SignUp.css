@@ -82,14 +82,6 @@ label {
     font-weight: bold;
 }
 
-/* 인풋 그룹 스타일 설정 */
-.input-group {
-    width: 100%;
-    margin-bottom: 15px;
-    text-align: right; /* 레이블을 왼쪽으로 정렬 */
-}
-
-
 /* 인풋 스타일 설정 */
 input {
     width: 100%;
@@ -97,6 +89,26 @@ input {
     border: 1px solid #ddd;
     border-radius: 10px;
     font-size: 1em;
+}
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    border-radius: 10px;
+}
+
+
+/* 인풋 그룹 스타일 설정 */
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    justify-content: flex-end;
+    text-align: right; /* 레이블을 왼쪽으로 정렬 */
+}
+
+.input-group2 {
+    margin-bottom: 40px;
 }
 
 /*#username, #nickname {*/
@@ -122,6 +134,7 @@ button:hover {
 .check-btn-container {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     margin-top: 5px; /* 입력칸과 버튼 간의 간격을 조절 */
 }
 
@@ -132,7 +145,6 @@ button.check-btn {
     font-size: 0.9em;
     background-color: #0d9bf1;
     border-radius: 5px;
-    margin-bottom: 15px;
     color: white;
     cursor: pointer;
 }

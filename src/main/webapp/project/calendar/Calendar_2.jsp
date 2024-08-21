@@ -1,7 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
          pageEncoding="UTF-8"
 %>
+
 <html>
+<%
+  String date = request.getParameter("date");
+  if (date == null || date.isEmpty()) {
+    // 날짜 값이 없을 때 처리
+    out.println("날짜 값이 없습니다.");
+  } else {
+    // 날짜 값이 있을 때 처리
+    out.println("선택한 날짜: " + date);
+  }
+%>
 <style>
   @font-face {
     font-family: 'NanumSquareRound';
@@ -79,7 +90,12 @@
 <script src="/js/Calendar_2.js"></script>
 <script>
   function goToCalendar3() {
-    window.location.href = '../calendar/Calendar_3.jsp'; // Calendar_3.jsp 으로 이동
+    const selectedDate = '<%= request.getParameter("date") %>';
+    if (selectedDate) {
+      window.location.href = '../calendar/Calendar_3.jsp?date=<%= request.getParameter("date") %>'; // Calendar_3.jsp 으로 이동
+    }else {
+      alert('날짜 값이 없습니다.');
+    }
   }
 </script>
 </body>

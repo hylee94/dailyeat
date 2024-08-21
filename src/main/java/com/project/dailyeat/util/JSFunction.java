@@ -18,7 +18,7 @@ public class JSFunction {
 
         out.println(script);
         }catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -34,7 +34,7 @@ public class JSFunction {
 
             writer.println(script);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 

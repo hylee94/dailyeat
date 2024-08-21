@@ -1,7 +1,6 @@
 package com.project.dailyeat.mvcboard;
 
 import com.project.dailyeat.fileupload.FileUtil;
-import com.project.dailyeat.users.LoginDTO;
 import com.project.dailyeat.users.UserDTO;
 import com.project.dailyeat.util.JSFunction;
 import jakarta.servlet.ServletException;
