@@ -1,11 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
          pageEncoding="UTF-8"
 %>
-
 <html>
 <style>
     .suggestions {
-        margin-top:33px;
+        margin-top: 33px;
         border: 1px solid #ccc;
         max-height: 150px; /* 최대 높이 설정 */
         overflow-y: auto; /* 세로 스크롤 생성 */
@@ -15,6 +14,7 @@
         width: 100%;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     .suggestion-item {
         padding: 10px;
         cursor: pointer;
@@ -23,7 +23,8 @@
     .suggestion-item:hover {
         background-color: #f0f0f0;
     }
-    .result-button{
+
+    .result-button {
         padding: 20px 35px;
         background-color: #0d9bf1;
         font-size: 20px;
@@ -32,11 +33,22 @@
         border-radius: 5px;
         cursor: pointer;
         position: absolute;
-        bottom: 20px;
-        right: 20px;
+        bottom: 5px;
+        right: 10px;
     }
-    .result-button:hover{
+
+    .result-button:hover {
         background-color: #3571FF;
+    }
+    .delete-button{
+        background-color: #0d9bf1;
+        border-radius: 100%;
+    }
+    .delete-button:hover {
+        background-color: #3571FF;
+    }
+    .delete-button:active {
+        background-color: #0d9bf1;
     }
 </style>
 <head>
@@ -62,19 +74,19 @@
                     // 데이터를 파싱하고, 각 데이터에 접근할 때 요소가 존재하는지 확인
                     foodData = Array.from(items).map(item => {
                         const name = item.getElementsByTagName('DESC_KOR')[0]?.textContent || "정보 없음";
-                        const gram =item.getElementsByTagName('SERVING_UNIT')[0]?.textContent || "0";
+                        const gram = item.getElementsByTagName('SERVING_UNIT')[0]?.textContent || "0";
                         const calories = item.getElementsByTagName('NUTR_CONT1')[0]?.textContent || "0";
                         const carbs = item.getElementsByTagName('NUTR_CONT2')[0]?.textContent || "0";
                         const protein = item.getElementsByTagName('NUTR_CONT3')[0]?.textContent || "0";
                         const fat = item.getElementsByTagName('NUTR_CONT4')[0]?.textContent || "0";
-                        const sugar= item.getElementsByTagName('NUTR_CONT5')[0]?.textContent || "0";
+                        const sugar = item.getElementsByTagName('NUTR_CONT5')[0]?.textContent || "0";
                         const nat = item.getElementsByTagName('NUTR_CONT6')[0]?.textContent || "0";
 
                         // 파싱한 데이터를 콘솔에 출력
                         console.log('음식:', name, '총내용량 단위:', gram ,'칼로리:', calories, '탄수화물:', carbs, '단백질:', protein, '지방:', fat
-                            , '당류:', sugar, '나트륨:', nat,);
+                                    , '당류:', sugar, '나트륨:', nat,);
 
-                        return { name, gram,calories, carbs, protein, fat ,sugar,nat};
+                        return {name, gram, calories, carbs, protein, fat, sugar, nat};
                     });
 
                     console.log('파싱된 음식 데이터:', foodData);
@@ -127,7 +139,7 @@
 
             // 검색어와 대조하여 음식 데이터를 찾음
             let foundFood = foodData.find(food => food.name.toLowerCase() === searchQuery);
-            console.log("foundFood : " , foundFood);
+            console.log("foundFood : ", foundFood);
             if (foundFood) {
                 // 데이터가 제대로 전달되는지 확인
                 console.log('검색된 음식:', foundFood);
@@ -172,7 +184,7 @@
         function addFoodToMeal() {
             const isManualEntry = document.getElementById('manual-entry-checkbox').checked;
 
-            let name, calories, carbs, protein, fat, sugar, nat;
+            let name, gram, calories, carbs, protein, fat, sugar, nat;
 
             if (isManualEntry) {
                 // 직접 입력된 값 가져오기
@@ -185,7 +197,7 @@
                 nat = document.getElementById('manual-nat').value;
 
                 // 직접 입력된 음식 정보
-                const newFood = { name, calories, carbs, protein, fat ,sugar,nat};
+                const newFood = {name, gram, calories, carbs, protein, fat, sugar, nat};
                 foodData.push(newFood); // 직접 입력된 데이터도 배열에 추가
             } else {
                 // 검색된 음식 정보
@@ -195,6 +207,7 @@
                 if (foundFood && selectedMealType) {
                     // 검색된 정보를 사용
                     name = foundFood.name;
+                    gram = foundFood.gram;
                     calories = foundFood.calories;
                     carbs = foundFood.carbs;
                     protein = foundFood.protein;
@@ -216,7 +229,11 @@
                     if (caloriesSpan) {
                         // 음식 항목을 식사 섹션에 추가
                         const foodEntry = document.createElement('p');
-                        foodEntry.textContent = `\${name} - \${calories} kcal`;
+                        // foodEntry.textContent = `\${name} - \${calories} kcal`;
+                        foodEntry.innerHTML = `
+                        <button class="delete-button" data-item="\${name}"  data-calories="\${calories}">-</button>
+                        \${name} - \${calories} kcal
+                        `;
                         mealSection.appendChild(foodEntry);
 
                         // 총 칼로리 업데이트
@@ -245,11 +262,22 @@
             }
         }
 
-        //@@@@
+        document.addEventListener('click', function (event) {
+            if (event.target && event.target.classList.contains('delete-button')) {
+                const foodName = event.target.getAttribute('data-item');
+                const foodCalories = parseInt(event.target.getAttribute('data-calories'));
+                const mealSection = event.target.parentElement.parentElement;
+                const caloriesSpan = mealSection.previousElementSibling.querySelector('.calories');
 
+                if (mealSection && caloriesSpan) {
+                    let currentCalories = parseInt(caloriesSpan.textContent.replace('총 칼로리: ', '').replace(' kcal', '')) || 0;
+                    currentCalories -= foodCalories;
+                    caloriesSpan.textContent = `총 칼로리: \${currentCalories} kcal`;
 
-
-
+                    event.target.parentElement.remove();
+                }
+            }
+        });
     </script>
 </head>
 <body>
@@ -287,6 +315,8 @@
             <input type="text" id="manual-name">
             <p>총 칼로리:</p>
             <input type="text" id="manual-calories">
+            <p>총 내용량단위:</p>
+            <input type="text" id="manual-gram">
             <p>탄수화물:</p>
             <input type="text" id="manual-carbs">
             <p>단백질:</p>
@@ -315,7 +345,7 @@
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
-            <div class="meal-entry" onclick="toggleMeal(this)"style="margin-bottom: 20px">
+            <div class="meal-entry" onclick="toggleMeal(this)" style="margin-bottom: 20px">
                 <img src="../../image/lunch.png" alt="점심 식단">
                 <p>점심 식단을 등록하세요</p>
                 <span class="calories lunch-calories">총 칼로리: 0</span>
@@ -325,7 +355,7 @@
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
-            <div class="meal-entry" onclick="toggleMeal(this)"style="margin-bottom: 20px">
+            <div class="meal-entry" onclick="toggleMeal(this)" style="margin-bottom: 20px">
                 <img src="../../image/dinner.png" alt="저녁 식단">
                 <p>저녁 식단을 등록하세요</p>
                 <span class="calories dinner-calories">총 칼로리: 0</span>
@@ -335,7 +365,7 @@
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
 
-            <div class="meal-entry" onclick="toggleMeal(this)"style="margin-bottom: 20px">
+            <div class="meal-entry" onclick="toggleMeal(this)" style="margin-bottom: 20px">
                 <img src="../../image/snack.png" alt="간식">
                 <p>간식 식단을 등록하세요</p>
                 <span class="calories snack-calories">총 칼로리: 0</span>
