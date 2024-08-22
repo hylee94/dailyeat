@@ -11,6 +11,7 @@
         // 날짜 값이 있을 때 처리
         out.println("선택한 날짜: " + date);
     }
+
 %>
 
 <style>
@@ -71,6 +72,15 @@
 
         //여기추가
         let selectedMealType = '';
+        let name = '';
+        let gram = '';
+        let calories = '';
+        let carbs = '';
+        let protein = '';
+        let fat = '';
+        let sugar = '';
+        let nat = '';
+
 
         // API로부터 데이터를 가져오는 함수
         function fetchFoodData() {
@@ -168,18 +178,17 @@
 
                 `;
                 // `input-fields`의 입력란에 음식 정보를 채움
-                document.querySelector('#input-fields input:nth-of-type(1)').value = foundFood.name;
-                document.querySelector('#input-fields input:nth-of-type(2)').value = foundFood.gram;
-                document.querySelector('#input-fields input:nth-of-type(3)').value = foundFood.calories;
-                document.querySelector('#input-fields input:nth-of-type(4)').value = foundFood.carbs;
-                document.querySelector('#input-fields input:nth-of-type(5)').value = foundFood.protein;
-                document.querySelector('#input-fields input:nth-of-type(6)').value = foundFood.fat;
-                document.querySelector('#input-fields input:nth-of-type(7)').value = foundFood.sugar;
-                document.querySelector('#input-fields input:nth-of-type(8)').value = foundFood.nat;
+                document.querySelector('#input-fields input:nth-of-type(2)').value = foundFood.name;
+                document.querySelector('#input-fields input:nth-of-type(3)').value = foundFood.gram;
+                document.querySelector('#input-fields input:nth-of-type(4)').value = foundFood.calories;
+                document.querySelector('#input-fields input:nth-of-type(5)').value = foundFood.carbs;
+                document.querySelector('#input-fields input:nth-of-type(6)').value = foundFood.protein;
+                document.querySelector('#input-fields input:nth-of-type(7)').value = foundFood.fat;
+                document.querySelector('#input-fields input:nth-of-type(8)').value = foundFood.sugar;
+                document.querySelector('#input-fields input:nth-of-type(9)').value = foundFood.nat;
             } else {
                 resultDiv.innerHTML = `<p>검색된 음식이 없습니다. 다시 시도해 주세요.</p>`;
                 // 검색 결과가 없을 때 입력란 초기화
-                document.querySelector('#input-fields input:nth-of-type(1)').value = '';
                 document.querySelector('#input-fields input:nth-of-type(2)').value = '';
                 document.querySelector('#input-fields input:nth-of-type(3)').value = '';
                 document.querySelector('#input-fields input:nth-of-type(4)').value = '';
@@ -187,6 +196,7 @@
                 document.querySelector('#input-fields input:nth-of-type(6)').value = '';
                 document.querySelector('#input-fields input:nth-of-type(7)').value = '';
                 document.querySelector('#input-fields input:nth-of-type(8)').value = '';
+                document.querySelector('#input-fields input:nth-of-type(9)').value = '';
             }
 
             console.log('결과 HTML:', resultDiv.innerHTML); // 결과 HTML을 콘솔에 출력
@@ -194,8 +204,6 @@
 
         function addFoodToMeal() {
             const isManualEntry = document.getElementById('manual-entry-checkbox').checked;
-
-            let name, gram, calories, carbs, protein, fat, sugar, nat;
 
             if (isManualEntry) {
                 // 직접 입력된 값 가져오기
@@ -226,6 +234,9 @@
                     fat = foundFood.fat;
                     sugar = foundFood.sugar;
                     nat = foundFood.nat;
+
+                    // 데이터가 잘 전달되는지 확인
+                    console.log('검색된 음식:', foundFood);
                 } else {
                     alert('음식을 검색한 후 추가할 식사 유형을 선택하세요.');
                     return;
@@ -273,52 +284,9 @@
                 }
 
                 console.log(JSON.stringify({name: name , gram: gram , calories : calories, carbs : carbs, protein: protein, fat: fat, sugar : sugar, nat : nat, mealType: selectedMealType}));
-                // 서버에 세션 저장 요청
-                fetch('/saveToSession', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name : name, gram : gram, calories : calories, carbs : carbs, protein: protein, fat: fat, sugar : sugar, nat : nat, mealType: selectedMealType
-                    })
-
-                }).then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            console.log('name :'+name+ 'gram :' + gram+'mealType :'+selectedMealType+' 세션에 음식 데이터가 저장되었습니다.');
-
-                        } else {
-                            console.error('세션 저장 실패:', data.message);
-
-                        }
-                    })
-                    .catch(error => console.error('서버 요청 실패:', error));
-            } else {
-                alert('모든 필드를 입력하고 식사 유형을 선택하세요.');
-            }
 
         }
 
-
-
-        function saveToDatabase() {
-
-            fetch('/saveToDatabase', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({name : name, gram : this.gram, calories : this.calories, carbs : this.carbs, protein: this.protein, fat: this.fat, sugar : this.sugar, nat : this.nat, mealType: selectedMealType})
-            }).then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        alert('데이터베이스에 음식 데이터가 저장되었습니다.');
-                    } else {
-                        alert('데이터베이스 저장 실패: ' + data.message);
-                    }
-                }).catch(error => console.error('서버 요청 실패:', error));
-        }
 
         document.addEventListener('click', function (event) {
             if (event.target && event.target.classList.contains('delete-button')) {
@@ -336,25 +304,38 @@
                 }
             }
         });
+        }
+        function handleSubmit() {
+            const form = document.getElementById('mealForm');
+            if (!selectedMealType) {
+                alert('식사 유형을 선택하세요.');
+                return;
+            }
+            form.elements['mealType'].value = selectedMealType;
+            form.submit();
+        }
+
     </script>
 </head>
 <body>
 <div class="container">
+    <form id="mealForm" method="post" action="saveMeal.jsp">
     <div class="left-section">
         <h2>하루 식사량을 입력해주세요</h2>
         <p>음식 검색어를 입력하시고 Enter 키나 확인 버튼을 눌러주세요.</p>
 
         <div class="meal-buttons">
-            <button class="bts bts-1">아침</button>
-            <button class="bts bts-1">점심</button>
-            <button class="bts bts-1">저녁</button>
-            <button class="bts bts-1">간식</button>
-            <button class="bts" onclick="addFoodToMeal()">추가하기</button>
+            <button type="button" class="bts bts-1">아침</button>
+            <button type="button" class="bts bts-1">점심</button>
+            <button type="button" class="bts bts-1">저녁</button>
+            <button type="button" class="bts bts-1">간식</button>
+            <button type="button" class="bts" onclick="addFoodToMeal()">추가하기</button>
+            <button type="button" onclick="handleSubmit()">저장하기</button>
         </div>
 
         <div class="search-bar" style="position: relative;">
             <input type="text" id="foodSearch" placeholder="음식 검색" oninput="updateSuggestions()">
-            <button class="search-button" onclick="searchFood()">&#128269;</button>
+            <button type="button" class="search-button" onclick="searchFood()">&#128269;</button>
             <div class="suggestions"></div>
         </div>
 
@@ -369,22 +350,25 @@
         </div>
 
         <div id="input-fields" class="input-fields">
+            <p>날짜</p>
+            <input type="text" name="date" value="<%= date %>">
             <p>메뉴 이름:</p>
-            <input type="text" id="manual-name">
+            <input type="text" name="name" id="manual-name">
             <p>총 내용량 단위:</p>
-            <input type="text" id="manual-gram">
+            <input type="text" name="gram" id="manual-gram">
             <p>총 칼로리:</p>
-            <input type="text" id="manual-calories">
+            <input type="text" name="calories" id="manual-calories">
             <p>탄수화물:</p>
-            <input type="text" id="manual-carbs">
+            <input type="text" name="carbs" id="manual-carbs">
             <p>단백질:</p>
-            <input type="text" id="manual-protein">
+            <input type="text" name="protein" id="manual-protein">
             <p>지방:</p>
-            <input type="text" id="manual-fat">
+            <input type="text" name="fat" id="manual-fat">
             <p>당류:</p>
-            <input type="text" id="manual-sugar">
+            <input type="text" name="sugar" id="manual-sugar">
             <p>나트륨:</p>
-            <input type="text" id="manual-nat">
+            <input type="text" name="nat" id="manual-nat">
+            <input type="hidden" name="mealType" value="">
         </div>
     </div>
 
@@ -436,6 +420,7 @@
         <button class="result-button" onclick="saveToDatabase()">저장하기</button>
 <%--        <button class="result-button" onclick="goToResult()">결과보기</button>--%>
     </div>
+    </form>
 </div>
 
 <!-- 검색 결과를 표시할 부분 -->

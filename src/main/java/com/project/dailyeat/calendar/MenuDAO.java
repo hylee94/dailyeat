@@ -1,43 +1,47 @@
-//package com.project.dailyeat.calendar;
-//
-//import com.project.dailyeat.common.DBConnPool;
-//
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//
-//public class MenuDAO extends DBConnPool{
-//    public MenuDAO() {
-//        super();
-//    }
-//
-//    public boolean addMenu(MenuDTO dto) {
-//        String query = "INSERT INTO project_menu (menu_num, id, postdate, menu, quantity, kcal, carbo, protein, fat, sugar, natrium, meal_type) " +
-//                "VALUES (project.SEQ_MENU_NUM.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//
-//        try {
-//            PreparedStatement psmt = conn.prepareStatement(query);
-//
-//            psmt.setString(1, dto.getId());
-//            psmt.setString(2, dto.getPostdate());
-//            psmt.setString(3, dto.getMenu());
-//            psmt.setInt(4, dto.getQuantity());
-//            psmt.setInt(5, dto.getKcal());
-//            psmt.setInt(6, dto.getCarbo());
-//            psmt.setInt(7, dto.getProtein());
-//            psmt.setInt(8, dto.getFat());
-//            psmt.setInt(9, dto.getSugar());
-//            psmt.setInt(10, dto.getNatrium());
-//            psmt.setString(11, dto.getMealType());
-//
-//            int rowsAffected = psmt.executeUpdate();
-//            return rowsAffected > 0;
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
-//
-//}
+package com.project.dailyeat.calendar;
+
+import com.project.dailyeat.calendar.MenuDTO;
+import com.project.dailyeat.common.DBConnPool;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class MenuDAO extends DBConnPool {
+
+    public MenuDAO() {
+        super(); // 부모 클래스의 생성자 호출
+    }
+
+    // 식단 정보를 데이터베이스에 저장하는 메서드
+    public boolean insertMeal(MenuDTO menuDTO) {
+        String sql = "INSERT INTO project.menu (MENU_NUM, ID, POSTDATE, MENU, QUANTITY, KCAL, CARBO, PROTEIN, FAT, SUGAR, NATRIUM, MEAL_TYPE) " +
+                "VALUES (project.SEQ_MENU_NUM.NEXTVAL, ?, TO_DATE(?, 'YYYY-MM-DD'), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) {
+            psmt.setString(1, menuDTO.getId());
+            psmt.setString(2, menuDTO.getPostdate());
+            psmt.setString(3, menuDTO.getName());
+            psmt.setDouble(4, menuDTO.getGram());
+            psmt.setDouble(5, menuDTO.getCalories());
+            psmt.setDouble(6, menuDTO.getCarbs());
+            psmt.setDouble(7, menuDTO.getProtein());
+            psmt.setDouble(8, menuDTO.getFat());
+            psmt.setDouble(9, menuDTO.getSugar());
+            psmt.setDouble(10, menuDTO.getNat());
+            psmt.setString(11, menuDTO.getSelectedMealType());
+
+            int result = psmt.executeUpdate();
+
+            return result > 0; // 성공적으로 삽입되었는지 여부를 반환
+
+        } catch (SQLException e) {
+            System.out.println("식단 정보 삽입 실패");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public void close() {
+        super.close(); // 부모 클래스의 close 메서드를 호출하여 자원 반납
+    }
+}

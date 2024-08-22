@@ -1,21 +1,19 @@
 package com.project.dailyeat.calendar;
 
 
-import java.sql.Date;
-
 public class MenuDTO {
     private int menuNum;
     private String id;
     private String postdate;
     private String name;
-    private int gram;
-    private int calories;
-    private int carbs;
-    private int protein;
-    private int fat;
-    private int sugar;
-    private int nat;
-    private String mealType;
+    private double  gram;
+    private double  calories;
+    private double  carbs;
+    private double  protein;
+    private double  fat;
+    private double  sugar;
+    private double  nat;
+    private String selectedMealType;
 
     public int getMenuNum() {
         return menuNum;
@@ -49,67 +47,85 @@ public class MenuDTO {
         this.name = name;
     }
 
-    public int getGram() {
+    public double getGram() {
         return gram;
     }
 
-    public void setGram(int gram) {
+    public void setGram(double gram) {
         this.gram = gram;
     }
 
-    public int getCalories() {
+    public double getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 
-    public int getCarbs() {
+    public double getCarbs() {
         return carbs;
     }
 
-    public void setCarbs(int carbs) {
+    public void setCarbs(double carbs) {
         this.carbs = carbs;
     }
 
-    public int getProtein() {
+    public double getProtein() {
         return protein;
     }
 
-    public void setProtein(int protein) {
+    public void setProtein(double protein) {
         this.protein = protein;
     }
 
-    public int getFat() {
+    public double getFat() {
         return fat;
     }
 
-    public void setFat(int fat) {
+    public void setFat(double fat) {
         this.fat = fat;
     }
 
-    public int getSugar() {
+    public double getSugar() {
         return sugar;
     }
 
-    public void setSugar(int sugar) {
+    public void setSugar(double sugar) {
         this.sugar = sugar;
     }
 
-    public int getNat() {
+    public double getNat() {
         return nat;
     }
 
-    public void setNat(int nat) {
+    public void setNat(double nat) {
         this.nat = nat;
     }
 
-    public String getMealType() {
-        return mealType;
+    public String getSelectedMealType() {
+        return selectedMealType;
     }
 
-    public void setMealType(String mealType) {
-        this.mealType = mealType;
+    public void setSelectedMealType(String selectedMealType) {
+        this.selectedMealType = selectedMealType;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuDTO{" +
+                "menuNum=" + menuNum +
+                ", id='" + id + '\'' +
+                ", postdate='" + postdate + '\'' +
+                ", name='" + name + '\'' +
+                ", gram=" + gram +
+                ", calories=" + calories +
+                ", carbs=" + carbs +
+                ", protein=" + protein +
+                ", fat=" + fat +
+                ", sugar=" + sugar +
+                ", nat=" + nat +
+                ", selectedMealType='" + selectedMealType + '\'' +
+                '}';
     }
 }
