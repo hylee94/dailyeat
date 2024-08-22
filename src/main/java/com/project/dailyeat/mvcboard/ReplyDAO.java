@@ -54,8 +54,7 @@ public class ReplyDAO extends DBConnPool {
                 replyList.add(dto);
             }
 
-            // 디버깅: 댓글 리스트 크기 출력
-            System.out.println("조회된 댓글 개수: " + replyList.size());
+
 
         }catch (SQLException e) {
             e.printStackTrace();
@@ -64,14 +63,14 @@ public class ReplyDAO extends DBConnPool {
 
     }
     // 댓글 삭제
-    public int deleteReply(int boardnum, String id) {
+    public int deleteReply(int replyNum, int boardnum) {
         int result = 0;
         try {
             // SQL 쿼리 준비
-            String query = "DELETE FROM project.reply WHERE boardnum = ? AND id = ?";
+            String query = "DELETE FROM project.reply WHERE replynum = ? ";
             psmt = conn.prepareStatement(query);
-            psmt.setInt(1, boardnum);
-            psmt.setString(2, id);
+            psmt.setInt(1, replyNum);
+
 
             // 쿼리 실행 및 결과 저장
             result = psmt.executeUpdate();
@@ -80,4 +79,27 @@ public class ReplyDAO extends DBConnPool {
         }
         return result;
     }
+
+    // 특정 게시글의 댓글 수를 가져오는 메서드
+    public int getReplyCount(int boardnum) {
+        int count = 0;
+        String query = "SELECT COUNT(*) FROM project.reply WHERE boardnum = ?";
+        try {
+            psmt = conn.prepareStatement(query);
+            psmt.setInt(1, boardnum);
+            rs = psmt.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt(1);
+                System.out.println("boardnum: " + boardnum + " | 댓글 수: " + count); // 로그 출력
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+
+
+
 }

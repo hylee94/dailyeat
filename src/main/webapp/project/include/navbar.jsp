@@ -100,8 +100,10 @@
                     <a class="nav-link active" aria-current="page" href="/project/home/Home.jsp">홈</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/project/calendar/Calendar.jsp">나의 기록</a>
+                    <a class="nav-link" href="/project/calendar/Calendar.jsp" onclick="checkLoginStatus(event)">나의 기록</a>
                 </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="../../mvcboard/list.do">커뮤니티</a>
                 </li>
@@ -120,7 +122,7 @@
                     } else {
                 %>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary btn-sm aria-disabled=true" onclick="location.href='../login/LoginMain.jsp'">로그인 </button>
+                    <button type="button" class="btn btn-primary btn-sm aria-disabled=true" onclick="location.href='/project/login/LoginMain.jsp'">로그인 </button>
                 </li>
                 <%
                     }
@@ -132,6 +134,19 @@
 <!-- nav 바 끝-->
 
 <script>
+
+function checkLoginStatus(event) {
+    var isLoggedIn =
+    <%= session1 != null && session1.getAttribute("loginMember") != null ? "trun" : "false" %>
+
+    if (!isLoggedIn) {
+        event.preventDefault(); // 링크 클릭 기본 동작 방지
+        alert('로그인 후 이용하실 수 있습니다.');
+        window.location.href = '/project/login/LoginMain.jsp'; // 로그인 페이지로 이동
+
+    }
+
+
     window.addEventListener('scroll', function () {
         var nav = document.getElementById('nav');
         if (window.scrollY > 50) {
@@ -140,6 +155,7 @@
             nav.classList.remove('scrolled');
         }
     });
+}
 </script>
 
 </body>

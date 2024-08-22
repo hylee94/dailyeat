@@ -16,6 +16,7 @@ public class MVCBoardDTO {
     private int downcount;
     private String pass;
     private int visitcount;
+    private int replyCount;
 
     public int getNum() {
         return num;
@@ -102,5 +103,13 @@ public class MVCBoardDTO {
 
     public void setVisitcount(int visitcount) {
         this.visitcount = visitcount;
+    }
+
+    public int getReplyCount() {
+        return replyCount;
+    }
+
+    public void setReplyCount(int replyCount) {
+        this.replyCount = replyCount;
     }
 }

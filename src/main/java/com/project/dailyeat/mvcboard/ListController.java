@@ -61,6 +61,9 @@ public class ListController extends HttpServlet {
         List<MVCBoardDTO> boardList = dao.selectListPage(map);
         dao.close();
 
+
+
+
         //뷰에 전달할 매개변수 추가
         String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../mvcboard/list.do");
 

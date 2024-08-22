@@ -22,9 +22,20 @@ public class ViewController extends HttpServlet {
         //조회수 증가
         dao.updateVisitCount(num);
 
+        // 게시글 상세보기
         MVCBoardDTO dto = dao.selectView(num);
 
+        // 댓글 목록 불러오기
+        ReplyDAO replyDAO = new ReplyDAO();
+        List<ReplyDTO> replies = replyDAO.selectReplies(Integer.parseInt(num));
+
+        // 댓글 수 계산
+        int replyCount = replyDAO.getReplyCount(Integer.parseInt(num));
+
+
+        // 자원 해제
         dao.close();
+        replyDAO.close();
 
         //줄바꿈 처리
         dto.setContent(dto.getContent().replaceAll("\r\n", "<br/>"));
@@ -46,8 +57,17 @@ public class ViewController extends HttpServlet {
             isImage = true;
         }
 
+
+
+        // 데이터 요청 속성에 설정
         req.setAttribute("dto", dto);
         req.setAttribute("isImage", isImage);
+        req.setAttribute("replies", replies);
+        req.setAttribute("replyCount", replyCount);
+
+
+
+        // JSP 페이지로 포워딩
         req.getRequestDispatcher("/project/community/View.jsp").forward(req, resp);
     }
 }

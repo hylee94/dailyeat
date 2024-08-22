@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <title>DailyEat 커뮤니티</title>
     <!-- CSS 파일 링크 -->
-    <link rel="stylesheet" type="text/css" href="/css/CommuView.css?after">
+    <link rel="stylesheet" type="text/css" href="/css/CommuView.css">
     <!-- Font Awesome 스크립트 추가 -->
     <script src="https://kit.fontawesome.com/849bb0fdc9.js" crossorigin="anonymous"></script>
 </head>
@@ -36,6 +36,8 @@
                     <span class="value">${ dto.postdate }</span>
                     <span class="label"><i class="fa-solid fa-eye" width="5%"></i></span>
                     <span class="value">${dto.visitcount}</span>
+                    <span><i class="fa-regular fa-comments" width="15%"></i> </span>
+                    <span class="value">${replyCount}</span>
                 </div>
             </div>
             <div class="post-title">
@@ -89,10 +91,10 @@
                     <span class="time">${comment.rdate}</span> <!-- 댓글 작성 시간 -->
                     <p>${comment.content}</p> <!-- 댓글 내용 -->
 
-                    <c:if test="${sessionScope.userId == comment.id}">
+                    <c:if test="${sessionScope.loginMember.id == comment.id}">
                         <form action="/mvcboard/deleteReply" method="post" style="display:inline;">
-                            <input type="hidden" name="boardnum" value="${comment.boardnum}">
-                            <input type="hidden" name="replyId" value="${comment.boardnum}">
+                            <input type="hidden" name="replyNum" value="${comment.replynum}">
+                            <input type="hidden" name="boardnum" value="${dto.num}">
                             <button type="submit" class="delete-btn">삭제</button>
                         </form>
                     </c:if>

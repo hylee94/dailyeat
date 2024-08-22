@@ -83,7 +83,7 @@
                         <a href="../mvcboard/view.do?num=${row.num}">${row.title}</a>
                     </td>
                     <td><i class="fa-solid fa-eye" width="5%"> ${row.visitcount}</i></td>
-                    <td><i class="fa-regular fa-comments" width="15%"> 댓글수</i></td>
+                    <td><i class="fa-regular fa-comments" width="15%"> ${row.replyCount} </i></td>
                 </tr>
             </c:forEach>
         </c:otherwise>

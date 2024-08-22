@@ -2,6 +2,7 @@ package com.project.dailyeat.mvcboard;
 
 import com.project.dailyeat.common.DBConnPool;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class MVCBoardDAO extends DBConnPool {
             System.out.println("end : " + map.get("end"));
 
             rs = psmt.executeQuery();
-
+            ReplyDAO replyDAO = new ReplyDAO();
             while (rs.next()){
                 //한 row 의 내용을 DTO에 저장
                 MVCBoardDTO dto= new MVCBoardDTO();
@@ -74,6 +75,11 @@ public class MVCBoardDAO extends DBConnPool {
                 dto.setDowncount(rs.getInt("downcount"));
                 dto.setPass(rs.getString("pass"));
                 dto.setVisitcount(rs.getInt("visitcount"));
+
+
+                //댓글 수 설정
+                int replyCount = replyDAO.getReplyCount(dto.getNum());
+                dto.setReplyCount(replyCount);  // BoardDTO 에 댓글 수 설정
                 boardList.add(dto);
             }
 
@@ -238,5 +244,42 @@ public class MVCBoardDAO extends DBConnPool {
 
         return result;
     }
+
+
+    public List<MVCBoardDTO> getBoardList() {
+        List<MVCBoardDTO> mvcBoardDTOList = new ArrayList<>();
+        String query = "SELECT * FROM project.board order by num desc"; // 게시글 목록 조회 쿼리
+
+        try {
+            psmt = conn.prepareStatement(query);
+            rs = psmt.executeQuery();
+
+            ReplyDAO replyDAO = new ReplyDAO(); // 댓글 DAO 생
+            while (rs.next()) {
+                MVCBoardDTO dto = new MVCBoardDTO();
+                dto.setNum(rs.getInt("num")); // 게시글 번호 설정
+                dto.setId(rs.getString("id"));  // 작성자 ID 설정
+                dto.setTitle(rs.getString("title")); // 제목 설정
+                dto.setPostdate(rs.getDate("postdate")); // 작성일 설정
+                dto.setVisitcount(rs.getInt("visitcount"));  // 조회수 설정
+
+                //댓글 수 설정
+                int replyCount = replyDAO.getReplyCount(dto.getNum());
+                dto.setReplyCount(replyCount);  // BoardDTO 에 댓글 수 설정
+
+                mvcBoardDTOList.add(dto); // 리스트에 추가
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            close(); // 자원 반납
+        }
+        return mvcBoardDTOList;
+    }
+
+
+
 
 }
