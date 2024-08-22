@@ -86,7 +86,7 @@
         <section class="comments">
             <h3>댓글</h3>
 
-            <c:forEach var="comment" items="${replies}">
+<%--            <c:forEach var="comment" items="${replies}">--%>
 
 
             <c:forEach var="comment" items="${replies}">
