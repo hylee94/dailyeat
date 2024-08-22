@@ -11,7 +11,6 @@
         // 날짜 값이 있을 때 처리
         out.println("선택한 날짜: " + date);
     }
-
 %>
 
 <style>
@@ -45,8 +44,8 @@
         border-radius: 5px;
         cursor: pointer;
         position: absolute;
-        bottom: 20px;
-        right: 20px;
+        bottom: -300px;
+        right: 40px;
     }
 
     .result-button:hover {
@@ -62,6 +61,7 @@
     .delete-button:active {
         background-color: #0d9bf1;
     }
+
 </style>
 <head>
     <meta charset="UTF-8">
@@ -371,7 +371,7 @@
             <input type="hidden" name="mealType" value="">
         </div>
     </div>
-
+    </form>
     <div class="right-section">
         <div class="meal-info">
             <h2>나의 식단정보</h2>
@@ -417,10 +417,10 @@
                 <p>추가 정보가 여기에 표시됩니다.</p>
             </div>
         </div>
-        <button class="result-button" onclick="saveToDatabase()">저장하기</button>
-<%--        <button class="result-button" onclick="goToResult()">결과보기</button>--%>
+<%--        <button class="result-button" onclick="saveToDatabase()">저장하기</button>--%>
+        <button type="button" class="result-button" onclick="goToResult()">결과보기</button>
     </div>
-    </form>
+
 </div>
 
 <!-- 검색 결과를 표시할 부분 -->

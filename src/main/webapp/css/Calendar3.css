@@ -17,7 +17,8 @@ body {
 
 .container {
     display: flex;
-    height: 100vh;
+    /*height: 100vh;*/
+    justify-content: space-between;
 }
 
 /* left-section */
@@ -26,6 +27,7 @@ body {
     background-color: #F4F7FD;
     padding: 20px;
     border-right: 2px solid #C4C4C4;
+
 }
 
 .right-section {
@@ -34,6 +36,7 @@ body {
     border-left: 2px solid #C4C4C4;
     padding: 20px;
     position: relative;
+
 }
 h2 {
 
@@ -237,20 +240,20 @@ input:checked + .slider:before {
 
 
 /*!* right-section *!*/
-.left-section {
-    flex: 1;
-    background-color: #F4F7FD;
-    padding: 20px;
-    border-right: 2px solid #C4C4C4;
-}
+/*.left-section {*/
+/*    flex: 1;*/
+/*    background-color: #F4F7FD;*/
+/*    padding: 20px;*/
+/*    border-right: 2px solid #C4C4C4;*/
+/*}*/
 
-.right-section {
-    flex: 1;
-    background-color: #FFFFFF;
-    border-left: 2px solid #C4C4C4;
-    padding: 20px;
-    position: relative;
-}
+/*.right-section {*/
+/*    flex: 1;*/
+/*    background-color: #FFFFFF;*/
+/*    border-left: 2px solid #C4C4C4;*/
+/*    padding: 20px;*/
+/*    position: relative;*/
+/*}*/
 
 .meal-info {
     margin-top: 20px;

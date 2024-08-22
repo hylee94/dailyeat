@@ -8,10 +8,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
+import org.json.XML;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +53,7 @@ public class AddFoodServlet extends HttpServlet {
         // JSON 데이터 확인
 //        String json = sb.toString();
         System.out.println("Received JSON: " + json);
+
 //        System.out.println("sb : " +  sb);
 
         //json 파싱
@@ -62,6 +65,7 @@ public class AddFoodServlet extends HttpServlet {
             System.out.println("FoodData: " + foodData);
             System.out.println("Selected Meal Type: " + foodData.getSelectedMealType());
 
+            System.out.println("fd : " +foodData);
             if (foodData == null) {
                 throw new IllegalArgumentException("JSON 데이터가 MenuDTO 객체로 변환되지 않았습니다.");
             }

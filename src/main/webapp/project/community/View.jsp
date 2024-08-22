@@ -82,14 +82,21 @@
 
 
         <!-- 댓글 목록 섹션 -->
+
         <section class="comments">
             <h3>댓글</h3>
 
             <c:forEach var="comment" items="${replies}">
+
+
+            <c:forEach var="comment" items="${replies}">
                 <div class="comment">
+                    <form method="post" action="/mvcboard/loadReplies">
                     <span class="author">${comment.id}</span> <!-- 댓글 작성자의 ID -->
                     <span class="time">${comment.rdate}</span> <!-- 댓글 작성 시간 -->
                     <p>${comment.content}</p> <!-- 댓글 내용 -->
+                    </form>
+                    
 
                     <c:if test="${sessionScope.loginMember.id == comment.id}">
                         <form action="/mvcboard/deleteReply" method="post" style="display:inline;">
@@ -100,12 +107,22 @@
                     </c:if>
                 </div>
             </c:forEach>
-
+            <%
+                List<ReplyDTO> replies = (List<ReplyDTO>) request.getAttribute("replies");
+                if (replies != null) {
+                    for (ReplyDTO reply : replies) {
+                        out.println("Reply: " + reply.getId() + " - " + reply.getContent() + "<br>");
+                    }
+                } else {
+                    out.println("No replies found.");
+                }
+            %>
             <!-- 댓글이 없을 경우 표시할 메시지 -->
             <c:if test="${empty replies}">
                 <p>댓글이 없습니다.</p>
             </c:if>
         </section>
+
     </main>
 
 </div>

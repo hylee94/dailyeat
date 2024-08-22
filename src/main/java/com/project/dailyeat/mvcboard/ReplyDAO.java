@@ -16,7 +16,7 @@ public class ReplyDAO extends DBConnPool {
         try {
         // SQL 쿼리 준비
             String query = "INSERT INTO project.reply (boardnum, id , content, rdate, replynum) " +
-                    "VALUES (?, ?, ?, SYSDATE, SEQ_REPLY_BNUM.NEXTVAL)";
+                    "VALUES (?, ?, ?, SYSDATE, project.SEQ_REPLY_BNUM.NEXTVAL)";
             psmt = conn.prepareStatement(query);
             psmt.setInt(1, dto.getBoardnum());
             psmt.setString(2, dto.getId());

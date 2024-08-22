@@ -353,7 +353,7 @@ body {
     left: 50%; /* 수평 중앙 */
     transform: translate(-50%, -50%); /* 모달 콘텐츠를 정확히 중앙에 위치시키기 위한 변환 */
     width: 80%; /* 모달 창의 너비 (화면의 80%) */
-    max-width: 1000px; /* 최대 너비 설정 */
+    max-width: 1350px; !important;/* 최대 너비 설정 */
     height: 80%; /* 모달 창의 높이 (화면의 80%) */
     max-height: 1000px; /* 최대 높이 설정 */
     background-color: #fff;
